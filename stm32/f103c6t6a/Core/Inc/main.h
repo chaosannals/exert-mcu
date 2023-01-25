@@ -22,9 +22,6 @@
 #ifndef __MAIN_H
 #define __MAIN_H
 
-#define HAL_RCC_MODULE_ENABLED
-#define HAL_GPIO_MODULE_ENABLED
-
 #ifdef __cplusplus
 extern "C" {
 #endif

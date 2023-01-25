@@ -59,13 +59,13 @@ static void MX_GPIO_Init(void)
 {
 
   GPIO_InitTypeDef led;
-  __HAL_RCC_GPIOD_CLK_ENABLE();
-  HAL_GPIO_WritePin(GPIOD, GPIO_PIN_2, GPIO_PIN_SET);
-  led.Pin = GPIO_PIN_2;
+  __HAL_RCC_GPIOB_CLK_ENABLE();
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
+  led.Pin = GPIO_PIN_11;
   led.Mode = GPIO_MODE_OUTPUT_PP;
   led.Pull = GPIO_NOPULL;
   led.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOD, &led);
+  HAL_GPIO_Init(GPIOB, &led);
 
 }
 
@@ -90,14 +90,6 @@ int main(void)
 
   /* Configure the system clock */
   SystemClock_Config();
-
-  //GPIO_InitTypeDef led;
-  //RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOD, ENABLE);
-  //led.GPIO_Pin = GPIO_Pin_2;
-  //led.GPIO_Mode = GPIO_Mode_Out_PP;
-  //led.GPIO_Speed = GPIO_Speed_50MHz;
-  //GPIO_Init(GPIOD, &led);
-  //MX_GPIO_Init();
   MX_GPIO_Init();
 
   /* USER CODE BEGIN SysInit */
@@ -111,14 +103,15 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  // printf("Hello World!");
   while (1)
   {
     /* USER CODE END WHILE */
-	  //GPIO_ResetBits(GPIOD, GPIO_Pin_2);
-    /* USER CODE BEGIN 3 */
 	  HAL_Delay(500);
-	  HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_2);
+	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_RESET);
+	  HAL_Delay(500);
+	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
+	  //HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_11);
+    /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
 }
