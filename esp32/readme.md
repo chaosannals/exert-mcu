@@ -10,3 +10,6 @@
 - [CH340 驱动下载](https://www.wch.cn/download/CH341SER_EXE.html)
 - [沁恒](https://www.wch.cn)
 
+## 注意事项
+
+因为这块板 GPIO 1 和 3 串口占用所以不要用，不然影响 调试 和 print 输出。

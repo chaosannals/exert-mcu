@@ -1,7 +1,7 @@
 from machine import Pin
 from time import sleep
 
-pin_leds = [Pin(gp, Pin.OUT) for gp in [16,17,18,19,23,5,1,3]]
+pin_leds = [Pin(gp, Pin.OUT) for gp in [16,17,18,19,23,5, 2, 4]]
 
 #print('start')
 for pin in pin_leds:
