@@ -1,4 +1,8 @@
-# 微动开关 5V
+# 传感器
+# 倾斜开关  5V
+# 震动传感器 5V
+# 干簧管 5V
+# U型光电传感器
 
 from machine import Pin
 from time import sleep
