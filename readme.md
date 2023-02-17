@@ -82,12 +82,35 @@ TO-92 半圆柱状，正对平面，左(E) 中(B) 右(C)。
 - 晶体管类型：NPN
 - Vce饱和压降(Max)：500mV
 - DC电流增益(hFE)(Min&Range)：85
+- 集电极电流Ic(Max)：500mA
+- 集射极击穿电压Vce(Max)：25V
+- 功率(Max)：1W
+- 跃迁频率：100MHz
+- 工作温度(Tj)：-55°C~150°C
+
+#### SS8050
+
+- 晶体管类型：NPN
+- Vce饱和压降(Max)：500mV
+- DC电流增益(hFE)(Min&Range)：85
 - 集电极电流Ic(Max)：1500mA
 - 集射极击穿电压Vce(Max)：25V
 - 功率(Max)：1W
 - 跃迁频率：100MHz
 - 工作温度(Tj)：-55°C~150°C
+
 #### S8550
+
+- 晶体管类型：PNP
+- Vce饱和压降(Max)：500mV
+- DC电流增益(hFE)(Min&Range)：160
+- 集电极电流Ic(Max)：500mA
+- 集射极击穿电压Vce(Max)：25V
+- 功率(Max)：1W
+- 跃迁频率：100MHz
+- 工作温度(Tj)：150°
+
+#### SS8550
 
 - 晶体管类型：PNP
 - Vce饱和压降(Max)：500mV
