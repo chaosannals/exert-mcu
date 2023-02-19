@@ -6,9 +6,9 @@ void delay(short t) {
 
 int main() {
 	while (1) {
-		delay(1000);
+		delay(10000);
 		P0_0 = 1;
-		delay(1000);
+		delay(10000);
 		P0_0 = 0;
 	}
 	return 0;
