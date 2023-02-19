@@ -1,0 +1,16 @@
+﻿{
+  "configurations": [
+    {
+      "name": "SDCC-Debug",
+      "generator": "Ninja",
+      "configurationType": "Debug",
+      "buildRoot": "${projectDir}\\out\\build\\${name}",
+      "installRoot": "${projectDir}\\out\\install\\${name}",
+      "cmakeCommandArgs": "-DCMAKE_SYSTEM_NAME=Generic -DCMAKE_C_COMPILER=sdcc",
+      "buildCommandArgs": "",
+      "ctestCommandArgs": "",
+      "cmakeToolchain": "",
+      "inheritEnvironments": []
+    }
+  ]
+}
