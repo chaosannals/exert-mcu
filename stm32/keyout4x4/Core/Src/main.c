@@ -68,7 +68,9 @@ typedef struct {
 } OutPin_Config;
 
 OutPin_Config configs[] = {
-	{ 1, 1, GPIOA,  GPIO_PIN_0 },
+	{ 3, 0, GPIOC,  GPIO_PIN_14 },
+	{ 3, 1, GPIOC,  GPIO_PIN_15 },
+	{ 3, 2, GPIOA,  GPIO_PIN_0 },
 	{ 3, 3, GPIOA,  GPIO_PIN_1 },
 };
 
@@ -112,12 +114,12 @@ int main(void)
 	  // 状态获取
 	  for (int i = 0; i < 4; ++i) {
 		  HAL_GPIO_WritePin(GPIOB, opins[i], GPIO_PIN_SET);
-		  HAL_Delay(40);
+		  HAL_Delay(4);
 		  for (int j = 0; j < 4; ++j) {
 			  keys[i][j] = HAL_GPIO_ReadPin(GPIOA, ipins[j]);
 		  }
 		  HAL_GPIO_WritePin(GPIOB, opins[i], GPIO_PIN_RESET);
-		  HAL_Delay(40);
+		  HAL_Delay(4);
 	  }
 
 	  // 状态触发
