@@ -3,6 +3,8 @@
 # 震动传感器 5V
 # 干簧管 5V
 # U型光电传感器
+# 触摸开关传感器
+# 红外避障传感器 3.3V
 
 from machine import Pin
 from time import sleep
