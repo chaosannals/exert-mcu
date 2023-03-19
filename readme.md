@@ -1,25 +1,14 @@
 # exert mcu
 
-## 电阻
+## [意法半导体（ST）](https://st.com)
 
-0. 黑
-1. 褐
-2. 红
-3. 橙
-4. 黄
-5. 绿
-6. 蓝
-7. 紫
-8. 灰
-9. 白
+### STM32
 
-## 电机驱动芯片
+### STM8
 
+## [乐鑫科技（Espressif）](https://www.espressif.com.cn/)
 
-#### ULN2003
+### ESP32 和 ESP8266
 
-低电平导通，当控制输入端输入高电平时，输出端输出低电平，此时电机负极被导通。
-
-#### ULN2803
-
-详见 ULN2003 ，比 ULN2003 多出一路。
+这两款可以通过安装 micropython 配合 Thonny 使用，
+或者官方的 [Flash 下载工具](https://www.espressif.com.cn/zh-hans/support/download/all) 下载 c 编译的二进制。
