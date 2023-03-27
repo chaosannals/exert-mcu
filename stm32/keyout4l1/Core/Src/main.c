@@ -53,7 +53,17 @@ static void MX_GPIO_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+uint8_t led_color_index = 0;
+uint32_t led_colors[] = {
+	0x000000,
+	0xFF0000,
+	0x00FF00,
+	0x0000FF,
+	0xFFFF00,
+	0xFF00FF,
+	0x00FFFF,
+	0xFFFFFF,
+};
 /* USER CODE END 0 */
 
 /**
@@ -85,7 +95,7 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
-
+  GPIO_PinState b7 = HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_7);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -104,6 +114,20 @@ int main(void)
 	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, nb6);
 	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, na10);
 	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, nb14);
+
+	  if (b7 != nb7) {
+		  b7 = nb7;
+		  if (b7 == GPIO_PIN_SET) {
+			  led_color_index = (led_color_index + 1) & 0b111;
+			  uint32_t color = led_colors[led_color_index];
+			  GPIO_PinState r = (color & 0xFF0000) ? GPIO_PIN_SET : GPIO_PIN_RESET;
+			  GPIO_PinState g = (color & 0x00FF00) ? GPIO_PIN_SET : GPIO_PIN_RESET;
+			  GPIO_PinState b = (color & 0x0000FF) ? GPIO_PIN_SET : GPIO_PIN_RESET;
+			  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, r);
+			  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, g);
+			  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_15, b);
+		  }
+	  }
   }
   /* USER CODE END 3 */
 }
@@ -163,10 +187,7 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_10
-                          |GPIO_PIN_11, GPIO_PIN_RESET);
-
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_SET);
+                          |GPIO_PIN_11|GPIO_PIN_12|GPIO_PIN_13|GPIO_PIN_15, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : PA1 PA2 PA3 PA4
                            PA5 PA6 PA7 */
@@ -186,8 +207,8 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : PB12 */
-  GPIO_InitStruct.Pin = GPIO_PIN_12;
+  /*Configure GPIO pins : PB12 PB13 PB15 */
+  GPIO_InitStruct.Pin = GPIO_PIN_12|GPIO_PIN_13|GPIO_PIN_15;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
