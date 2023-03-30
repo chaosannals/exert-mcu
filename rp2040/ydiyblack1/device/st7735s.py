@@ -115,7 +115,7 @@ class TFT(object):
         """aLoc SPI pin location is either 1 for 'X' or 2 for 'Y'.
            aDC is the DC pin and aReset is the reset pin."""
         self._size = ScreenSize
-        self._offset = bytearray([0, 0]) # 画面内存位置偏移
+        self._offset = bytearray([2, 1]) # 画面内存位置偏移
         self.rotate = 0  # Vertical with top toward pins.
         self._rgb = True  # color order of rgb.
         self.tfa = 0  # top fixed area
@@ -613,7 +613,7 @@ class TFT(object):
         self.cs(1)
 
 
-def maker(spi, cs=29, dc=28, reset=27):
+def maker(spi, cs=27, dc=28, reset=29):
     t = TFT(spi, dc, reset, cs)
     print("Initializing")
     t.initg()
@@ -627,8 +627,11 @@ spi = SPI(1, sck=Pin(14), mosi=Pin(15))
 t = maker(spi)
 t.fill(t.RED)
 sleep(1)
-# t.vscroll(100)
-# sleep(1)
+#t.vscroll(100)
+#sleep(1)
 t.fill(t.BLUE)
 sleep(1)
 t.fill(t.GREEN)
+sleep(1)
+#t._reset()
+
