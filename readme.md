@@ -2,17 +2,37 @@
 
 ## [意法半导体（ST）](https://st.com)
 
-### STM32
+### STM32F0x
+
+Cortex-M0 系列
+
+### STM32F10x
+
+Cortex-M3 系列
 
 ### STM8
 
 ## [乐鑫科技（Espressif）](https://www.espressif.com.cn/)
+
+Wifi 和 蓝牙芯片不错。
 
 ### ESP32 和 ESP8266
 
 这两款可以通过安装 micropython 配合 Thonny 使用，
 或者官方的 [Flash 下载工具](https://www.espressif.com.cn/zh-hans/support/download/all) 下载 c 编译的二进制。
 
+
+## [沁恒微电子（WCH）](https://www.wch.cn/)
+
+USB 做得不错。
+
+### CH55x
+
+MCS51 系列的单片机，比传统的 51 体积小，外设多，性能强。支持 USB 烧录。
+
+### CH32F10x
+
+Cortex-M3 系列，性价比高，支持 USB 烧录。
 
 ## MicroPython
 
