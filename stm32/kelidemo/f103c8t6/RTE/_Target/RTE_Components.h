@@ -21,6 +21,8 @@
         #define RTE_CMSIS_RTOS2_RTX5            /* CMSIS-RTOS2 Keil RTX5 */
 /* Keil::Device:StdPeriph Drivers:Framework:3.6.0 */
 #define RTE_DEVICE_STDPERIPH_FRAMEWORK
+/* Keil::Device:StdPeriph Drivers:GPIO:3.6.0 */
+#define RTE_DEVICE_STDPERIPH_GPIO
 /* Keil::Device:StdPeriph Drivers:RCC:3.6.0 */
 #define RTE_DEVICE_STDPERIPH_RCC
 
