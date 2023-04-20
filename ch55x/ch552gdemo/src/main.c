@@ -6,10 +6,10 @@ void delay(short t) {
 
 int main() {
 	while (1) {
-		delay(10000);
-		P0_0 = 1;
-		delay(10000);
-		P0_0 = 0;
+		delay(1000000);
+		P3_2 = 1;
+		delay(1000000);
+		P3_2 = 0;
 	}
 	return 0;
 }

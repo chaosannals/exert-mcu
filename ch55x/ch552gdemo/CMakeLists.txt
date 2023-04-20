@@ -7,6 +7,22 @@ project(ch552gdemo)
 
 add_executable(ch552gdemo)
 
+set_target_properties(
+    ch552gdemo
+    PROPERTIES
+    OUTPUT_NAME ch552gdemo
+    SUFFIX ".ihx"
+)
+
+add_custom_command(
+    TARGET ch552gdemo
+    POST_BUILD
+    COMMENT "output ihx"
+    COMMAND packihx ch552gdemo.ihx > ch552gdemo.hex
+    COMMENT "output bin"
+    COMMAND objcopy -I ihex -O binary ch552gdemo.ihx ch552gdemo.bin
+)
+
 target_sources(
     ch552gdemo
     PRIVATE
