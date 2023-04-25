@@ -2,10 +2,6 @@ from time import sleep
 from device.led_rgb import LedRGB
 
 led = LedRGB()
-led.on(g=0,b=0)
-sleep(2)
-led.on(r=0,b=0)
-sleep(2)
-led.on(r=0,g=0)
-sleep(2)
+led.on(r=1, g=1,b=1)
+sleep(1)
 led.off()

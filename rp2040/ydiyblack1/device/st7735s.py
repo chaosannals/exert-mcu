@@ -620,18 +620,23 @@ def maker(spi, cs=27, dc=28, reset=29):
     t.fill(0)
     return t
 
-bg = Pin(26)
-bg.value(1)
 
-spi = SPI(1, sck=Pin(14), mosi=Pin(15))
-t = maker(spi)
-t.fill(t.RED)
-sleep(1)
-#t.vscroll(100)
-#sleep(1)
-t.fill(t.BLUE)
-sleep(1)
-t.fill(t.GREEN)
-sleep(1)
-#t._reset()
+def test():
+    bg = Pin(26)
+    bg.value(1)
+
+    spi = SPI(1, sck=Pin(14), mosi=Pin(15))
+    t = maker(spi)
+    t.fill(t.RED)
+    sleep(1)
+    #t.vscroll(100)
+    #sleep(1)
+    t.fill(t.BLUE)
+    sleep(1)
+    t.fill(t.GREEN)
+    sleep(1)
+    #t._reset()
+    
+if '__main__' == __name__:
+    test()
 
