@@ -613,7 +613,7 @@ class TFT(object):
         self.cs(1)
 
 
-def maker(spi, cs=27, dc=28, reset=29):
+def maker(spi, cs=20, dc=21, reset=22):
     t = TFT(spi, dc, reset, cs)
     print("Initializing")
     t.initg()

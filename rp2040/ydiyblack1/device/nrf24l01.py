@@ -322,7 +322,7 @@ def master():
         while not nrf.any() and not timeout:
             end_time = utime.ticks_ms()
             #if utime.ticks_diff(end_time, start_time) > 250:
-            if utime.ticks_diff(utime.ticks_ms(), start_time) > 400:
+            if utime.ticks_diff(utime.ticks_ms(), start_time) > 100:
                 timeout = True
                 #print(f'time: {start_time} {end_time}')
         if timeout:
