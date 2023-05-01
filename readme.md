@@ -34,7 +34,9 @@ MCS51 系列的单片机，比传统的 51 体积小，外设多，性能强。�
 
 Cortex-M3 系列，性价比高，支持 USB 烧录。
 
-## MicroPython
+## [MicroPython](https://micropython.org)
+
+## [CircuitPython](https://circuitpython.org)
 
 ### 启动
 
