@@ -6,5 +6,6 @@ set(CMAKE_C_STANDARD_REQUIRED ON)
 project(ch552gdemo)
 
 add_subdirectory(led_simple)
+add_subdirectory(led_rx)
 add_subdirectory(usb_simple)
 add_subdirectory(xl2400)
