@@ -5,8 +5,8 @@ AddCH552GProject(usb_simple)
 target_sources(
     usb_simple
     PUBLIC
-    "src/ch552.h"
-    "src/ch552_usb.h"
+    "../inc/ch552.h"
+    "../inc/ch552_usb.h"
     PRIVATE
     "src/main.c"
 )

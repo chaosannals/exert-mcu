@@ -1,5 +1,5 @@
 #include <8052.h>
-#include "ch552.h"
+#include <ch552.h>
 
 void delay(short t) {
 	while (t--);

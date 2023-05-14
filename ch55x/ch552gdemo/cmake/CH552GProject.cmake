@@ -29,11 +29,12 @@ function(
         message(STATUS "sdcc found: ${SDCC_COMPILER}")
         get_filename_component(SDCC_BIN_DIR ${SDCC_COMPILER} DIRECTORY)
         get_filename_component(SDCC_DIR ${SDCC_BIN_DIR} DIRECTORY)
-        message(STATUS "sdcc dir: ${SDCC_DIR}")
+        message(STATUS "sdcc dir: ${SDCC_DIR} proejct dir: ${PROJECT_SOURCE_DIR}")
         target_include_directories(
             ${TARGET_NAME}
             PUBLIC
             "${SDCC_DIR}/include/mcs51"
+            "${PROJECT_SOURCE_DIR}/inc"
         )
     else()
         message(STATUS "sdcc not found")
