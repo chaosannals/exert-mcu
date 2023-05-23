@@ -1,5 +1,5 @@
-#ifndef CH55X_USB_H
-#define CH55X_USB_H
+#ifndef CH552_USB_H
+#define CH552_USB_H
 
 #include <compiler.h>
 

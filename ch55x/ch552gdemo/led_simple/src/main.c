@@ -21,7 +21,7 @@ inline void set_led(int r, int g, int b) {
 	LED_B = b;
 }
 
-inline void delay(short t) {
+inline void delay(int t) {
 	while (t--);
 }
 
