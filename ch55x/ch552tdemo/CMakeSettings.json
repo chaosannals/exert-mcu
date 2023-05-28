@@ -1,0 +1,26 @@
+﻿{
+  "configurations": [
+    {
+      "name": "SDCC-Debug",
+      "generator": "Ninja",
+      "configurationType": "Debug",
+      "inheritEnvironments": [],
+      "buildRoot": "${projectDir}\\out\\build\\${name}",
+      "installRoot": "${projectDir}\\out\\install\\${name}",
+      "cmakeCommandArgs": "-DCMAKE_SYSTEM_NAME=Generic -DCMAKE_C_COMPILER=sdcc",
+      "buildCommandArgs": "",
+      "ctestCommandArgs": ""
+    },
+    {
+      "name": "SDCC-Release",
+      "generator": "Ninja",
+      "configurationType": "Release",
+      "inheritEnvironments": [],
+      "buildRoot": "${projectDir}\\out\\build\\${name}",
+      "installRoot": "${projectDir}\\out\\install\\${name}",
+      "cmakeCommandArgs": "-DCMAKE_SYSTEM_NAME=Generic -DCMAKE_C_COMPILER=sdcc",
+      "buildCommandArgs": "",
+      "ctestCommandArgs": ""
+    },
+  ]
+}
