@@ -1,9 +1,9 @@
 include("../cmake/CH552GProject.cmake")
 
-AddCH552GProject(usb_simple)
+AddCH552GProject(waveform)
 
 target_sources(
-    usb_simple
+    waveform
     PRIVATE
     "src/main.c"
 )

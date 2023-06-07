@@ -49,12 +49,12 @@
 #define TM1650_CMD_LV7 0b01110000
 
 // 显示模式显示控制位 B3   7 / 8 显示控制位
-#define TM1650_CMD_D7 0b00000000
-#define TM1650_CMD_D8 0b00001000
+#define TM1650_CMD_D7 0b00001000
+#define TM1650_CMD_D8 0b00000000
 
 // 显示模式显示控制位 B1   显示开/关
-#define TM1650_CMD_ENABLE  0b00000000
-#define TM1650_CMD_DISABLE 0b00000001
+#define TM1650_CMD_ENABLE  0b00000001
+#define TM1650_CMD_DISABLE 0b00000000
 
 #define TM1650_ADDR_D1   0x68
 #define TM1650_ADDR_D2   0x6A
@@ -69,7 +69,7 @@ inline void delay(int t) {
 
 void tm1650_start();
 void tm1650_end();
-void tm1650_ack();
+char tm1650_ack();
 void tm1650_write(char data);
 char tm1650_read();
 void tm1650_write_to(char addr, char data);

@@ -45,7 +45,7 @@ inline int is_press_up() {
 	return 0;
 }
 
-int main() {
+void main() {
 	int i = 0;
 
 	BUTTON = 0;
@@ -57,10 +57,9 @@ int main() {
 			set_led(color[i][0], color[i][1], color[i][2]);
 			i = (i + 1) % color_count;
 			LED_TX = 1;
-			delay(10000000);
+			delay(10000);
 			LED_TX = 0;
 		}
 		//delay(10000000);
 	}
-	return 0;
 }
