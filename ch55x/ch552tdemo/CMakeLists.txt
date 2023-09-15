@@ -6,3 +6,4 @@ set(CMAKE_C_STANDARD_REQUIRED ON)
 project(ch552tdemo)
 
 add_subdirectory(led_3641as)
+add_subdirectory(led_3641as_long)

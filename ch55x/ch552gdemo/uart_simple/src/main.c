@@ -37,12 +37,12 @@ void main() {
 
 	while (1) {
 		put_0('a');
-		delay(10000);
+		delay(1000);
 		//P3_2 = 1;
 		put_0('b');
-		delay(10000);
+		delay(1000);
 		put_0('c');
-		delay(10000);
+		delay(1000);
 		//P3_2 = 0;
 	}
 }
