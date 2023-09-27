@@ -1,5 +1,11 @@
 # exert mcu
 
+## 逻辑分析仪
+
+### [PulseView](https://sigrok.org/wiki/Downloads)
+
+开源的逻辑分析仪软件。
+
 ## [意法半导体（ST）](https://st.com)
 
 ### STM32F0x
