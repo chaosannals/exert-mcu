@@ -1,0 +1,9 @@
+build-idx:
+  generated-by: csolution version 2.2.1
+  csolution: e230c8t6.csolution.yml
+  cprojects:
+    - cproject: e230c8t6.cproject.yml
+  cbuilds:
+    - cbuild: e230c8t6+Target_1.cbuild.yml
+      project: e230c8t6
+      configuration: +Target_1

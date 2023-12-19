@@ -1,0 +1,14 @@
+cbuild-pack:
+  resolved-packs:
+    - resolved-pack: ARM::CMSIS@5.9.0
+      selected-by:
+        - ARM::CMSIS
+    - resolved-pack: ARM::CMSIS-DSP@1.15.0
+      selected-by:
+        - ARM::CMSIS-DSP
+    - resolved-pack: ARM::CMSIS-NN@4.1.0
+      selected-by:
+        - ARM::CMSIS-NN
+    - resolved-pack: GigaDevice::GD32E23x_DFP@1.0.2
+      selected-by:
+        - GigaDevice::GD32E23x_DFP

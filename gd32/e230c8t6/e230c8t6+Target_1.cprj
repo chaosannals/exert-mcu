@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<cprj schemaVersion="2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CPRJ.xsd">
+  <created timestamp="2023-12-20T01:02:50" tool="csolution 2.2.1"/>
+
+  <info isLayer="false">
+    <description>Automatically generated project</description>
+  </info>
+
+  <packages>
+    <package name="CMSIS" vendor="ARM" version="5.9.0:5.9.0"/>
+    <package name="GD32E23x_DFP" vendor="GigaDevice" version="1.0.2:1.0.2"/>
+  </packages>
+
+  <compilers>
+    <compiler name="AC6" version="6.20.0"/>
+  </compilers>
+
+  <target Dendian="Little-endian" Dfpu="NO_FPU" Dname="GD32E230C8" Dsecure="Non-secure" Dtz="NO_TZ" Dvendor="GigaDevice:123">
+    <output elf="e230c8t6.axf" intdir="tmp/e230c8t6/Target_1" name="e230c8t6" outdir="out/e230c8t6/Target_1" rtedir="RTE" type="exe"/>
+    <options debug="on" optimize="none"/>
+    <asflags add="-masm=auto" compiler="AC6"/>
+    <cflags add="-std=c99 -fno-rtti -funsigned-char -fshort-enums -fshort-wchar -ffunction-sections -w" compiler="AC6"/>
+    <cxxflags add="-xc++ -std=c++98 -fno-rtti -funsigned-char -fshort-enums -fshort-wchar -ffunction-sections -w" compiler="AC6"/>
+    <ldflags add="--map --load_addr_map_info --xref --callgraph --symbols --info sizes --info totals --info unused --info veneers --strict --summary_stderr --info summarysizes" compiler="AC6" file="RTE/Device/GD32E230C8/ac6_linker_script.sct.src" regions="RTE/Device/GD32E230C8/regions_GD32E230C8.h"/>
+    <defines>GD32E230</defines>
+  </target>
+
+  <components>
+    <component Cclass="CMSIS" Cgroup="CORE" Cvendor="ARM" Cversion="5.6.0"/>
+    <component Cclass="Device" Cgroup="EVAL" Csub="GD32E23x" Cvendor="GigaDevice" Cversion="1.0.0">
+      <file attr="config" category="source" name="Device/Utilities/gd32e230c_eval.c" version="1.0.0"/>
+    </component>
+    <component Cclass="Device" Cgroup="GD32E23x_StdPeripherals" Csub="ADC" Cvendor="GigaDevice" Cversion="1.0.0">
+      <file attr="config" category="source" name="Device/Firmware/Peripherals/src/gd32e23x_adc.c" version="1.0.0"/>
+    </component>
+    <component Cclass="Device" Cgroup="GD32E23x_StdPeripherals" Csub="DBG" Cvendor="GigaDevice" Cversion="1.0.0">
+      <file attr="config" category="source" name="Device/Firmware/Peripherals/src/gd32e23x_dbg.c" version="1.0.0"/>
+    </component>
+    <component Cclass="Device" Cgroup="GD32E23x_StdPeripherals" Csub="DMA" Cvendor="GigaDevice" Cversion="1.0.0">
+      <file attr="config" category="source" name="Device/Firmware/Peripherals/src/gd32e23x_dma.c" version="1.0.0"/>
+    </component>
+    <component Cclass="Device" Cgroup="GD32E23x_StdPeripherals" Csub="EXTI" Cvendor="GigaDevice" Cversion="1.0.0">
+      <file attr="config" category="source" name="Device/Firmware/Peripherals/src/gd32e23x_exti.c" version="1.0.0"/>
+    </component>
+    <component Cclass="Device" Cgroup="GD32E23x_StdPeripherals" Csub="FMC" Cvendor="GigaDevice" Cversion="1.0.0">
+      <file attr="config" category="source" name="Device/Firmware/Peripherals/src/gd32e23x_fmc.c" version="1.0.0"/>
+    </component>
+    <component Cclass="Device" Cgroup="GD32E23x_StdPeripherals" Csub="GPIO" Cvendor="GigaDevice" Cversion="1.0.0">
+      <file attr="config" category="source" name="Device/Firmware/Peripherals/src/gd32e23x_gpio.c" version="1.0.0"/>
+    </component>
+    <component Cclass="Device" Cgroup="GD32E23x_StdPeripherals" Csub="MISC" Cvendor="GigaDevice" Cversion="1.0.0">
+      <file attr="config" category="source" name="Device/Firmware/Peripherals/src/gd32e23x_misc.c" version="1.0.0"/>
+    </component>
+    <component Cclass="Device" Cgroup="GD32E23x_StdPeripherals" Csub="RCU" Cvendor="GigaDevice" Cversion="1.0.0">
+      <file attr="config" category="source" name="Device/Firmware/Peripherals/src/gd32e23x_rcu.c" version="1.0.0"/>
+    </component>
+    <component Cclass="Device" Cgroup="GD32E23x_StdPeripherals" Csub="SYSCFG" Cvendor="GigaDevice" Cversion="1.0.0">
+      <file attr="config" category="source" name="Device/Firmware/Peripherals/src/gd32e23x_syscfg.c" version="1.0.0"/>
+    </component>
+    <component Cclass="Device" Cgroup="GD32E23x_StdPeripherals" Csub="USART" Cvendor="GigaDevice" Cversion="1.0.0">
+      <file attr="config" category="source" name="Device/Firmware/Peripherals/src/gd32e23x_usart.c" version="1.0.0"/>
+    </component>
+    <component Cclass="Device" Cgroup="GD32E23x_libopt" Cvendor="GigaDevice" Cversion="1.0.0"/>
+    <component Cclass="Device" Cgroup="Startup" Cvendor="GigaDevice" Cversion="1.0.0">
+      <file attr="config" category="source" name="Device/Source/ARM/startup_gd32e23x.s" version="1.0.0"/>
+      <file attr="config" category="source" name="Device/Source/system_gd32e23x.c" version="1.0.0"/>
+    </component>
+  </components>
+
+  <files>
+    <group name="Source Group 1">
+      <file category="sourceC" name="main.c"/>
+    </group>
+  </files>
+</cprj>
+

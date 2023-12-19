@@ -1,0 +1,61 @@
+project:
+  packs:
+    - pack: GigaDevice::GD32E23x_DFP
+    - pack: ARM::CMSIS
+    - pack: ARM::CMSIS-NN
+    - pack: ARM::CMSIS-DSP
+  setups:
+    - setup: Options for Target_1
+      processor:
+        trustzone: non-secure
+      debug: "on"
+      define:
+        - GD32E230
+      misc:
+        - C:
+            - -std=c99
+          C-CPP:
+            - -fno-rtti
+            - -funsigned-char
+            - -fshort-enums
+            - -fshort-wchar
+            - -ffunction-sections
+            - -w
+          CPP:
+            - -xc++
+            - -std=c++98
+          ASM:
+            - -masm=auto
+          Link:
+            - --map
+            - --load_addr_map_info
+            - --xref
+            - --callgraph
+            - --symbols
+            - --info sizes
+            - --info totals
+            - --info unused
+            - --info veneers
+            - --strict
+            - --summary_stderr
+            - --info summarysizes
+  groups:
+    - group: Source Group 1
+      files:
+        - file: main.c
+  components:
+    - component: ARM::CMSIS:CORE
+    # - component: GigaDevice::GD32E23x_DFP
+    - component: GigaDevice::Device:EVAL:GD32E23x
+    - component: GigaDevice::Device:GD32E23x_StdPeripherals:ADC
+    - component: GigaDevice::Device:GD32E23x_StdPeripherals:DBG
+    - component: GigaDevice::Device:GD32E23x_StdPeripherals:DMA
+    - component: GigaDevice::Device:GD32E23x_StdPeripherals:EXTI
+    - component: GigaDevice::Device:GD32E23x_StdPeripherals:FMC
+    - component: GigaDevice::Device:GD32E23x_StdPeripherals:GPIO
+    - component: GigaDevice::Device:GD32E23x_StdPeripherals:MISC
+    - component: GigaDevice::Device:GD32E23x_StdPeripherals:RCU
+    - component: GigaDevice::Device:GD32E23x_StdPeripherals:SYSCFG
+    - component: GigaDevice::Device:GD32E23x_StdPeripherals:USART
+    - component: GigaDevice::Device:GD32E23x_libopt
+    - component: GigaDevice::Device:Startup

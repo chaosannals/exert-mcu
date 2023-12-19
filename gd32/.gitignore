@@ -3,3 +3,7 @@
 /**/Objects/
 /**/*.uvguix.*
 /**/*.uvoptx
+
+/**/out/
+/**/tmp/
+/**/.clangd
