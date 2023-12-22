@@ -4,6 +4,7 @@
 
 uint16_t adc_value[2] = {0};
 
+//
 void InitADCJoytick(void) {
 	adc_special_function_config(ADC_SCAN_MODE, ENABLE);
 	adc_special_function_config(ADC_CONTINUOUS_MODE, ENABLE);

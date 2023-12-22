@@ -7,6 +7,8 @@
 #include "gd32e23x_gpio.h"
 #include <stdio.h>
 
+// 
+
 extern uint16_t adc_value[2];
 
 int main(void) {
@@ -16,15 +18,19 @@ int main(void) {
 	InitDMA();
 	InitUSART0();
 	InitADCJoytick();
-	
+	PrintUSART0("start");
+	SendUSART0Ui16(12345);
+	SendUSART0('\n');
 	while(1){
 		gpio_bit_toggle(GPIOA, GPIO_PIN_8);
 		gpio_bit_toggle(GPIOB, GPIO_PIN_9);
-		//SendUSART0(adc_value[0]);
-		//SendUSART0(adc_value[0] >> 8);
-		//SendUSART0(adc_value[1]);
-		//SendUSART0(adc_value[1] >> 8);
-		printf("x: %d y:%d", adc_value[0], adc_value[1]);
+		PrintUSART0("x:");
+		SendUSART0Ui16(adc_value[0]);
+		SendUSART0('\n');
+		PrintUSART0("y:");
+		SendUSART0Ui16(adc_value[1]);
+		SendUSART0('\n');
+		// printf("x: %d y:%d", adc_value[0], adc_value[1]);
 		DelayMs(1000);
 	}
 }

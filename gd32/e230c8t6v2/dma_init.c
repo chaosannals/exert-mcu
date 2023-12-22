@@ -21,6 +21,4 @@ void InitDMA(void) {
 	
 	dma_circulation_enable(DMA_CH0);
 	dma_channel_enable(DMA_CH0);
-	
-	
 }

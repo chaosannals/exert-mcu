@@ -18,6 +18,26 @@ void SendUSART0(char c) {
 	while(RESET == usart_flag_get(USART0, USART_FLAG_TBE));
 }
 
+char int_chars[8];
+void SendUSART0Ui16(uint16_t i16) {
+	int start = 0;
+	while(i16 != 0) {
+		int_chars[start++] = (i16 % 10) + 0x30;
+		i16 /= 10;
+	}
+	for (int index = start - 1; index >= 0; --index) {
+		SendUSART0(int_chars[index]);
+	}
+}
+
+void PrintUSART0(char *t) {
+	while (*t != '\0') {
+		SendUSART0(*t);
+		++t;
+	}
+}
+
+/*
 // cover stdio fputc
 int fputc(int ch, FILE *f) {
 	uint16_t count = 0;
@@ -29,6 +49,7 @@ int fputc(int ch, FILE *f) {
 	usart_data_transmit(USART0, (uint8_t)ch);
 	return ch;
 }
+*/
 
 // USART0
 void USART0_IRQHandler(void) {
