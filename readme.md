@@ -22,6 +22,20 @@ Cortex-M3 系列
 
 Wifi 和 蓝牙芯片不错。
 
+### [ESP IDF](https://idf.espressif.com/)
+
+IDF 是个框架，提供了 vscode 和 eclipse 的插件。
+
+vscode 创建项目居然是让去复制 examples 里面的项目。做个生成项目引导就这么难么，没几个文件阿。
+
+底部栏小图标设置各种配置，操作按钮也在底部栏。左边栏有个 exploder 可查看详细点的信息。
+
+提供了:
+
+- build 构建
+- flash 烧录
+- monitor 监控，即：串口或者 JTAG 信息。
+
 ### ESP32 和 ESP8266
 
 这两款可以通过安装 micropython 配合 Thonny 使用，
