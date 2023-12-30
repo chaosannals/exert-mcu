@@ -35,7 +35,7 @@
 // ===========================
 // Enter your WiFi credentials
 // ===========================
-const char* ssid = "wifi id";
+const char* ssid = "wifi name";
 const char* password = "wifi pass";
 
 void startCameraServer();
@@ -67,12 +67,15 @@ void setup() {
   config.pin_reset = RESET_GPIO_NUM;
   config.xclk_freq_hz = 20000000;
   //config.frame_size = FRAMESIZE_UXGA; // 这个 1600x1200 像素太大了
-  config.frame_size = FRAMESIZE_VGA; // 换小的 320x240
-  config.pixel_format = PIXFORMAT_JPEG; // for streaming
-  //config.pixel_format = PIXFORMAT_RGB565; // for face detection/recognition
+  //config.frame_size = FRAMESIZE_VGA; // 换小的 640x480
+  //config.frame_size = FRAMESIZE_QQVGA;// 160x120
+  config.frame_size = FRAMESIZE_96X96;
+  //config.pixel_format = PIXFORMAT_JPEG; // for streaming
+  config.pixel_format = PIXFORMAT_RGB565; // for face detection/recognition
   config.grab_mode = CAMERA_GRAB_WHEN_EMPTY;
   config.fb_location = CAMERA_FB_IN_PSRAM;
-  config.jpeg_quality = 12;
+  // config.jpeg_quality = 12;
+  config.jpeg_quality = 8;
   config.fb_count = 1;
   
   // if PSRAM IC present, init with UXGA resolution and higher JPEG quality
@@ -89,7 +92,7 @@ void setup() {
     }
   } else {
     // Best option for face detection/recognition
-    config.frame_size = FRAMESIZE_240X240;
+    //config.frame_size = FRAMESIZE_240X240;
 #if CONFIG_IDF_TARGET_ESP32S3
     config.fb_count = 2;
 #endif
