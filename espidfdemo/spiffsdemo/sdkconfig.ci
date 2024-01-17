@@ -1,0 +1,6 @@
+# 这个文件直接在 vscode 里面是不起效的
+# 要把配置弄到被忽略的 sdkconfig 里面才行。
+# CONFIG_PARTITION_TABLE_CUSTOM 默认被注释掉， 必须等于 y 时，才能使用自定义分区。
+CONFIG_PARTITION_TABLE_CUSTOM=y
+CONFIG_PARTITION_TABLE_CUSTOM_FILENAME="partitions.csv"
+CONFIG_PARTITION_TABLE_FILENAME="partitions.csv"
