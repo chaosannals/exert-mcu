@@ -4,7 +4,26 @@
 #include "freertos/task.h"
 #include "esp_chip_info.h"
 #include "esp_flash.h"
+#include "esp_system.h"
+#include "nvs_flash.h"
+
 #include "chip.h"
+
+// 初始化 NVS（Non-Volatile Storage） 非易失性存储
+void init_nvc_demo(void) {
+  esp_err_t err = nvs_flash_init();
+  if (err == ESP_ERR_NVS_NO_FREE_PAGES ||
+      err == ESP_ERR_NVS_NEW_VERSION_FOUND) {
+    // 1.OTA app 分区有个小于 NVS 分区大小的 non-OTA 分区。
+    // 报这个错误是因为 NVS 初始化失败。
+    // 2.NVS 分区 数据格式太新或者不能被识别
+    // 如果发生上面错误， 将擦除 NVS 并重新初始化 NVS
+    ESP_ERROR_CHECK(nvs_flash_erase());
+    err = nvs_flash_init();
+    printf("NVS reinit.\n");
+  }
+  ESP_ERROR_CHECK(err);
+}
 
 // 打印芯片信息
 int print_chip_info(void) {
