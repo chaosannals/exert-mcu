@@ -4,23 +4,23 @@ from flask import Flask
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.get("/")
 def index():
     return "Hello, World!"
 
-@app.route("/post")
+@app.post("/post")
 def post_action():
     return 'on Post'
 
-@app.route("/put")
+@app.put("/put")
 def put_action():
     return 'on Put'
 
-@app.route("/patch")
+@app.patch("/patch")
 def patch_action():
     return 'on patch'
 
-@app.route("/delete")
+@app.delete("/delete")
 def delete_action():
     return 'on delete'
 
