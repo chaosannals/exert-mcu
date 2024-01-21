@@ -14,5 +14,8 @@ void InitRCU(void) {
 	rcu_periph_clock_enable(RCU_USART0);
 	
 	// DMA
-	rcu_periph_clock_enable(RCU_DMA);
+	//rcu_periph_clock_enable(RCU_DMA);
+	
+	// TIME2
+	rcu_periph_clock_enable(RCU_TIMER2);
 }
