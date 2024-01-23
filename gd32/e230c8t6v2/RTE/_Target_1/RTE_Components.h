@@ -32,6 +32,8 @@
 #define RTE_DEVICE_STDPERIPHERALS_RCU
 /* GigaDevice::Device:GD32E23x_StdPeripherals:SYSCFG:1.0.0 */
 #define RTE_DEVICE_STDPERIPHERALS_SYSCFG
+/* GigaDevice::Device:GD32E23x_StdPeripherals:TIMER:1.0.0 */
+#define RTE_DEVICE_STDPERIPHERALS_TIMER
 /* GigaDevice::Device:GD32E23x_StdPeripherals:USART:1.0.0 */
 #define RTE_DEVICE_STDPERIPHERALS_USART
 

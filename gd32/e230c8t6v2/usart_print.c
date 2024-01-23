@@ -21,10 +21,10 @@ void SendUSART0(char c) {
 char int_chars[8];
 void SendUSART0Ui16(uint16_t i16) {
 	int start = 0;
-	while(i16 != 0) {
+	do {
 		int_chars[start++] = (i16 % 10) + 0x30;
 		i16 /= 10;
-	}
+	} while(i16 != 0);
 	for (int index = start - 1; index >= 0; --index) {
 		SendUSART0(int_chars[index]);
 	}

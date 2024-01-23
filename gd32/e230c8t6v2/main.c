@@ -7,17 +7,18 @@
 #include "gd32e23x_gpio.h"
 #include <stdio.h>
 
-// 
+// TODO adc
 
 extern uint16_t adc_value[2];
 
 int main(void) {
-	InitSysTick();
 	InitRCU();
+	InitSysTick();
 	InitGPIO();
-	InitDMA();
+	// InitDMA();
 	InitUSART0();
-	InitADCJoytick();
+	//InitADCJoytick();
+	
 	PrintUSART0("start");
 	SendUSART0Ui16(12345);
 	SendUSART0('\n');
