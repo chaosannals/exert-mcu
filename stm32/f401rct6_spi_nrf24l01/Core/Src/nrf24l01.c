@@ -85,8 +85,9 @@ uint8_t NRF24L01_Check(void) {
 	int r = 1;
 	uint8_t origin[5] = { 0xA5,0xA5,0xA5,0xA5,0xA5 };
 	uint8_t result[5] = { 0x00,0x00,0x00,0x00,0x00 };
-	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_RESET); // CE 0
+
 	NRF24L01_WriteBuf(CMD_W_REG | REG_TX_ADDR, origin, 5);
+	HAL_Delay(1000); // 如果模块比较老，建议时间长点。
 	NRF24L01_ReadBuf(REG_TX_ADDR, result, 5);
 	for (int i = 0; i < 5; ++i) {
 		if (origin[i] != result[i]) {
@@ -94,7 +95,6 @@ uint8_t NRF24L01_Check(void) {
 			break;
 		}
 	}
-	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_SET); // CE 1
 	return r;
 }
 
@@ -146,12 +146,12 @@ void NRF24L01_RxMode(void) {
 }
 
 
-uint8_t NRF24L01_RxPacket(uint8_t *buffer) {
+uint8_t NRF24L01_RxPacket(uint8_t *buffer, uint8_t size) {
 	uint8_t state;
 	state = NRF24L01_ReadByte(REG_STATUS);
 	NRF24L01_WriteByte(CMD_W_REG | REG_STATUS, state); // clear tx_ds max_rt
 	if (state & RX_DR) {
-		NRF24L01_ReadBuf(REG_RX_PW_P0, buffer, 5);
+		NRF24L01_ReadBuf(CMD_R_RX_PLOAD, buffer, size);
 		NRF24L01_WriteByte(CMD_FLUSH_RX, 0xFF); // clear rx fifo
 		return 1;
 	}

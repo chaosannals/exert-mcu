@@ -113,12 +113,13 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  uint8_t buffer[] = {0x1,0x1,0x1,0x1,0x1};
   while (nrf24l01Status)
   {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-//	  NRF24L01_TxPacket()
+	  NRF24L01_TxPacket(buffer, 5);
 	  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET);
 	  HAL_Delay(400);
 	  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
