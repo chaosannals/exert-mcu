@@ -103,10 +103,15 @@ int main(void)
   /* USER CODE BEGIN 2 */
   NRF24L01_Init();
 
+  uint8_t isRx = 1; // switch rx/tx
   uint8_t nrf24l01Status = NRF24L01_Check();
 
   if (nrf24l01Status) {
-	  NRF24L01_TxMode();
+	  if (isRx) {
+		  NRF24L01_RxMode(46, 5);
+	  } else {
+		  NRF24L01_TxMode(46);
+	  }
   }
 
   /* USER CODE END 2 */
@@ -119,7 +124,14 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  NRF24L01_TxPacket(buffer, 5);
+	  if (isRx) {
+		  NRF24L01_RxPacket(buffer, 5);
+	  } else {
+		  for (int i=0; i < 5; ++i) {
+			  buffer[i] += 1;
+		  }
+		  NRF24L01_TxPacket(buffer, 5);
+	  }
 	  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET);
 	  HAL_Delay(400);
 	  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);

@@ -87,7 +87,7 @@ uint8_t NRF24L01_Check(void) {
 	uint8_t result[5] = { 0x00,0x00,0x00,0x00,0x00 };
 
 	NRF24L01_WriteBuf(CMD_W_REG | REG_TX_ADDR, origin, 5);
-	HAL_Delay(1000); // 如果模块比较老，建议时间长点。
+	HAL_Delay(2000); // 如果模块比较老，建议时间长点。
 	NRF24L01_ReadBuf(REG_TX_ADDR, result, 5);
 	for (int i = 0; i < 5; ++i) {
 		if (origin[i] != result[i]) {
@@ -98,7 +98,7 @@ uint8_t NRF24L01_Check(void) {
 	return r;
 }
 
-void NRF24L01_TxMode(void) {
+void NRF24L01_TxMode(uint8_t chan) {
 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_RESET); // CE 0
 	NRF24L01_WriteBuf(CMD_W_REG | REG_TX_ADDR, pipe0, 5);
 	NRF24L01_WriteBuf(CMD_W_REG | REG_RX_ADDR_P0, pipe0, 5);
@@ -106,7 +106,7 @@ void NRF24L01_TxMode(void) {
 	NRF24L01_WriteByte(CMD_W_REG | REG_EN_AA, 0x01); // enable pipe0
 	NRF24L01_WriteByte(CMD_W_REG | REG_EN_RXADDR, 0x01); // enable pipe0 rx address
 	NRF24L01_WriteByte(CMD_W_REG | REG_SETUP_RETR, 0x1A); // set retry times
-	NRF24L01_WriteByte(CMD_W_REG | REG_RF_CH, 0x02); // set rf channel
+	NRF24L01_WriteByte(CMD_W_REG | REG_RF_CH, chan); // set rf channel
 	NRF24L01_WriteByte(CMD_W_REG | REG_RF_SETUP, 0x0F); // cont_wave
 	NRF24L01_WriteByte(CMD_W_REG | REG_CONFIG, 0x0E); // PWR_UP CRCO EN_CRC
 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_SET); // CE 1
@@ -131,14 +131,14 @@ uint8_t NRF24L01_TxPacket(uint8_t *buffer, uint8_t size) {
 	return 0xFF;
 }
 
-void NRF24L01_RxMode(void) {
+void NRF24L01_RxMode(uint8_t chan, uint8_t psize) {
 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_RESET); // CE 0
 
 	NRF24L01_WriteBuf(CMD_W_REG | REG_RX_ADDR_P0, pipe0, 5);
 	NRF24L01_WriteByte(CMD_W_REG | REG_EN_AA, 0x01); // enable pipe0
 	NRF24L01_WriteByte(CMD_W_REG | REG_EN_RXADDR, 0x01); // enable pipe0 rx address
-	NRF24L01_WriteByte(CMD_W_REG | REG_RF_CH, 0x02); // set rf channel
-	NRF24L01_WriteByte(CMD_W_REG | REG_RX_PW_P0, 32); // set rf payload width 32bit
+	NRF24L01_WriteByte(CMD_W_REG | REG_RF_CH, chan); // set rf channel
+	NRF24L01_WriteByte(CMD_W_REG | REG_RX_PW_P0, psize); // set rf payload width 32bit
 	NRF24L01_WriteByte(CMD_W_REG | REG_RF_SETUP, 0x0F); // const_wave
 	NRF24L01_WriteByte(CMD_W_REG | REG_CONFIG, 0x0F); // PWR_UP CRCO EN_CRC PRIM_RX
 
