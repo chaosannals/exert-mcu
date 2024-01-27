@@ -57,14 +57,6 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define LED_1_Pin GPIO_PIN_13
-#define LED_1_GPIO_Port GPIOC
-#define NRF24L01_IRQ_Pin GPIO_PIN_0
-#define NRF24L01_IRQ_GPIO_Port GPIOB
-#define NRF24L01_CSN_Pin GPIO_PIN_1
-#define NRF24L01_CSN_GPIO_Port GPIOB
-#define NRF24L01_CE_Pin GPIO_PIN_2
-#define NRF24L01_CE_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 
