@@ -3,6 +3,6 @@
 nvs,      data, nvs,     ,        16k,
 otadata,  data, ota,     ,        8k,
 phy_init, data, phy,     ,        4k,
-ota_0,    app,  ota_0,   ,        1536k,
-ota_1,    app,  ota_1,   ,        1536k,
+ota_0,    app,  ota_0,   ,        3M,
+ota_1,    app,  ota_1,   ,        3M,
 storage,  data, spiffs,  ,        512k,
