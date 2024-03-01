@@ -31,7 +31,7 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "ssd1306.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -57,6 +57,20 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define LED_G_Pin GPIO_PIN_0
+#define LED_G_GPIO_Port GPIOC
+#define LED_B_Pin GPIO_PIN_1
+#define LED_B_GPIO_Port GPIOC
+#define KEY_L_Pin GPIO_PIN_2
+#define KEY_L_GPIO_Port GPIOC
+#define KEY_H_Pin GPIO_PIN_3
+#define KEY_H_GPIO_Port GPIOC
+#define NRF24L01_IRQ_Pin GPIO_PIN_0
+#define NRF24L01_IRQ_GPIO_Port GPIOB
+#define NRF24L01_CSN_Pin GPIO_PIN_1
+#define NRF24L01_CSN_GPIO_Port GPIOB
+#define NRF24L01_CE_Pin GPIO_PIN_2
+#define NRF24L01_CE_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 
