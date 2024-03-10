@@ -2,6 +2,9 @@
 #include <string.h>
 #include "stm32f4xx_hal.h"
 
+// 0-7 页， 每 1 页  = 8 列 * 128 行
+// 1 列由一字节表示，  8 列 * 128 行 * 8 页
+
 #define SSD1306_IIC_ADDR0 0x3C << 1
 #define SSD1306_IIC_ADDR1 0x3D << 1
 
