@@ -1,0 +1,19 @@
+# A project translates into one executable or library.
+project:
+
+  groups:
+    - group: Source Files
+      files:
+        - file: ./main.c
+
+  # List components to use for your application.
+  # A software component is a re-usable unit that may be configurable.
+  components:
+    - component: ARM::CMSIS:CORE
+    - component: Device:Startup
+    - component: Keil::Device:StdPeriph Drivers:RTC
+    - component: Keil::Device:StdPeriph Drivers:Framework@3.6.0
+    - component: Keil::Device:StdPeriph Drivers:GPIO
+    - component: Keil::Device:StdPeriph Drivers:RCC@3.6.0
+  packs:
+    - pack: Keil::STM32F1xx_DFP@2.4.1
