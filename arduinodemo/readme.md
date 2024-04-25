@@ -28,3 +28,8 @@ Vscode 底部会有很多选项。可以选择 板子类型，串口号之类的
 安装 板子管理器后（例如 ESP）插上板子，可以自动识别型号。
 
 [Arduino 官方示例](https://github.com/arduino/arduino-examples)
+
+
+默认配置使得   xxxx.ino  的名字必须是项目目录名，比如 ino 的目录叫 xxxx ，名字就要叫 xxxx.ino
+
+.vscode 文件下面的 c_cpp_properties.json 和 arduino.json 是配置文件，有硬件和编译器配置信息。由插件 UI 界面设配后生成。
