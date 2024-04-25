@@ -33,3 +33,7 @@ Vscode 底部会有很多选项。可以选择 板子类型，串口号之类的
 默认配置使得   xxxx.ino  的名字必须是项目目录名，比如 ino 的目录叫 xxxx ，名字就要叫 xxxx.ino
 
 .vscode 文件下面的 c_cpp_properties.json 和 arduino.json 是配置文件，有硬件和编译器配置信息。由插件 UI 界面设配后生成。
+
+## 包管理 Library Manager
+通过 VsCode 的命令调用，搜索 Arduino 可以看到有一个 LibraryManager 的命令，执行它可以打开包管理面板。
+居然不做个 UI 按钮来打开这个面板。。。。
