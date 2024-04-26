@@ -41,3 +41,13 @@ Vscode 底部会有很多选项。可以选择 板子类型，串口号之类的
 这些库管理是全局的。只要安装一次，所有项目都可用。
 
 [社区库仓库](https://github.com/arduino-libraries)
+
+
+## ESP
+
+### Wifi 智能连接
+
+通过安装 乐鑫的APP 广播 SSDI 和 密码给设备。
+[GitHub仓库](https://github.com/EspressifApp/EsptouchForAndroid)
+
+安装 APP 后，启动配网。单片机使用智能配网模式去配网。
