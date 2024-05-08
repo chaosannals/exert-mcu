@@ -32,6 +32,7 @@ extern "C" {
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "ssd1306.h"
+#include "nrf24l01.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
