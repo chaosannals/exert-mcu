@@ -2,11 +2,11 @@
 #ifdef __AVR__
   #include <avr/power.h>
 #endif
-#define PIN        6
-#define NUMPIXELS 16
+#define PIN        19
+#define NUMPIXELS 53
 
 Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
-#define DELAYVAL 500
+#define DELAYVAL 3000
 
 void setup() {
     Serial.begin(115200);
@@ -21,10 +21,15 @@ void setup() {
 void loop() {
   pixels.clear();
 
-  for(int i=0; i<NUMPIXELS; i++) {
-    Serial.println("inputString");
-    pixels.setPixelColor(i, pixels.Color(0, 150, 0));
-    pixels.show();
-    delay(DELAYVAL);
+  int v[3] = { 0xFF, 0xFF << 8, 0xFF << 16};
+
+  for(int j =0; j < 3 ; j++ ) { 
+    for(int i=0; i<17; i++) {
+      Serial.println(v[j]);
+      pixels.setBrightness(100);
+      pixels.setPixelColor(j * 17 + i, v[j]);
+      pixels.show();
+    }
   }
+  delay(DELAYVAL);
 }
