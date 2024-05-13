@@ -106,6 +106,12 @@ void NRF24L01_TxMode(uint8_t chan) {
 	NRF24L01_WriteByte(CMD_W_REG | REG_EN_AA, 0x01); // enable pipe0
 	NRF24L01_WriteByte(CMD_W_REG | REG_EN_RXADDR, 0x01); // enable pipe0 rx address
 	NRF24L01_WriteByte(CMD_W_REG | REG_SETUP_RETR, 0x1A); // set retry times
+
+	// 单独调试 TX
+	//NRF24L01_WriteByte(CMD_W_REG | REG_EN_AA, 0x00); // enable pipe0
+	//NRF24L01_WriteByte(CMD_W_REG | REG_EN_RXADDR, 0x00); // enable pipe0 rx address
+	//NRF24L01_WriteByte(CMD_W_REG | REG_SETUP_RETR, 0x00); // set retry times
+
 	NRF24L01_WriteByte(CMD_W_REG | REG_RF_CH, chan); // set rf channel
 	NRF24L01_WriteByte(CMD_W_REG | REG_RF_SETUP, 0x0F); // cont_wave
 	NRF24L01_WriteByte(CMD_W_REG | REG_CONFIG, 0x0E); // PWR_UP CRCO EN_CRC
@@ -120,7 +126,7 @@ uint8_t NRF24L01_TxPacket(uint8_t *buffer, uint8_t size) {
 	while (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_0) != 0);
 
 	state=NRF24L01_ReadByte(REG_STATUS); // read status
-	NRF24L01_WriteByte(CMD_W_REG | REG_STATUS, state); // clear rx_ds / max_rt
+	NRF24L01_WriteByte(CMD_W_REG | REG_STATUS, state); // clear rx_ds tx_ds max_rt
 	if (state & MAX_RT) {
 		NRF24L01_WriteByte(CMD_FLUSH_TX, 0xFF); // clear tx fifo
 		return MAX_RT;
@@ -149,7 +155,7 @@ void NRF24L01_RxMode(uint8_t chan, uint8_t psize) {
 uint8_t NRF24L01_RxPacket(uint8_t *buffer, uint8_t size) {
 	uint8_t state;
 	state = NRF24L01_ReadByte(REG_STATUS);
-	NRF24L01_WriteByte(CMD_W_REG | REG_STATUS, state); // clear tx_ds max_rt
+	NRF24L01_WriteByte(CMD_W_REG | REG_STATUS, state); // clear tx_ds rx_dr max_rt
 	if (state & RX_DR) {
 		NRF24L01_ReadBuf(CMD_R_RX_PLOAD, buffer, size);
 		NRF24L01_WriteByte(CMD_FLUSH_RX, 0xFF); // clear rx fifo

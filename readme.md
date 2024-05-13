@@ -69,3 +69,8 @@ Cortex-M3 系列，性价比高，支持 USB 烧录。
 micropython 默认执行根目录下 main.py 文件。如果有 boot.py 的板子会先执行 boot.py 再执行 main.py 。
 
 注：一般不要修改 boot.py 的板子的该文件。
+
+## 2.4G 
+
+NRF24L01 需要确保 接收 要先于 发射 启动。
+接收 启动后重启下 发射。

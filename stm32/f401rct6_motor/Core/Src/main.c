@@ -128,6 +128,7 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   uint8_t buffer[] = {0x1,0x1,0x1,0x1,0x1};
+  uint8_t result = 0;
 //  uint16_t v = 0;
   while (1)
   {
@@ -136,12 +137,12 @@ int main(void)
     /* USER CODE BEGIN 3 */
 	  if (nrf24l01Status) {
 		  if (isRx) {
-				NRF24L01_RxPacket(buffer, 5);
+			  result=NRF24L01_RxPacket(buffer, 5);
 		  } else {
 			  for (int i=0; i < 5; ++i) {
 				  buffer[i] += 1;
 			  }
-			  NRF24L01_TxPacket(buffer, 5);
+			  result=NRF24L01_TxPacket(buffer, 5);
 		  }
 	  }
 //	  v = (v + 100) % 2000;

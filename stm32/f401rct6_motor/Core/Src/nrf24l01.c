@@ -82,7 +82,7 @@ uint8_t NRF24L01_WriteBuf(uint8_t address, uint8_t *buffer, uint8_t length) {
 
 uint8_t NRF24L01_Check(void) {
 	int r = 1;
-	uint8_t origin[5] = { 0xA5,0xA5,0xA5,0xA5,0xA5 };
+	uint8_t origin[5] = { 0xA4,0xA5,0xA6,0xA7,0xA8 };
 	uint8_t result[5] = { 0x00,0x00,0x00,0x00,0x00 };
 
 	NRF24L01_WriteBuf(CMD_W_REG | REG_TX_ADDR, origin, 5);
