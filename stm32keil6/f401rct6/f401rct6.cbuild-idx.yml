@@ -1,0 +1,13 @@
+build-idx:
+  generated-by: csolution version 2.4.0
+  cdefault: ${CMSIS_COMPILER_ROOT}/cdefault.yml
+  csolution: f401rct6.csolution.yml
+  cprojects:
+    - cproject: usart_demo/usart_demo.cproject.yml
+  cbuilds:
+    - cbuild: usart_demo/usart_demo.Debug+STM32F401RCTx.cbuild.yml
+      project: usart_demo
+      configuration: .Debug+STM32F401RCTx
+    - cbuild: usart_demo/usart_demo.Release+STM32F401RCTx.cbuild.yml
+      project: usart_demo
+      configuration: .Release+STM32F401RCTx

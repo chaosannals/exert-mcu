@@ -1,0 +1,22 @@
+{
+    "cmake.sourceDirectory": "G:/chaosannals/exert-mcu/stm32keil6/f401rct6/tmp/usart_demo/STM32F401RCTx/Debug",
+    "cmsis-csolution.actions": [
+        {
+            "path": "f401rct6.csolution.yml",
+            "target": "STM32F401RCTx",
+            "config": {
+                "run": "Flash Device",
+                "debug": "Arm Debugger"
+            },
+            "projects": [
+                {
+                    "path": "usart_demo/usart_demo.cproject.yml",
+                    "config": {
+                        "run": "Flash Device",
+                        "debug": "Arm Debugger"
+                    }
+                }
+            ]
+        }
+    ]
+}
