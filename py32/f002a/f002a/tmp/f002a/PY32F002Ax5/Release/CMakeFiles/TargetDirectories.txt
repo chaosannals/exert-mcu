@@ -1,0 +1,4 @@
+G:/chaosannals/exert-mcu/py32/f002a/f002a/tmp/f002a/PY32F002Ax5/Release/CMakeFiles/database.dir
+G:/chaosannals/exert-mcu/py32/f002a/f002a/tmp/f002a/PY32F002Ax5/Release/CMakeFiles/f002a.dir
+G:/chaosannals/exert-mcu/py32/f002a/f002a/tmp/f002a/PY32F002Ax5/Release/CMakeFiles/edit_cache.dir
+G:/chaosannals/exert-mcu/py32/f002a/f002a/tmp/f002a/PY32F002Ax5/Release/CMakeFiles/rebuild_cache.dir

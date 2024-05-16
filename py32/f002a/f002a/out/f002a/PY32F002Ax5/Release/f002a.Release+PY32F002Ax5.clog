@@ -1,0 +1,25 @@
+# CMSIS Build Audit File generated on 2024-05-17T02:37:58
+
+# Project Description File: g:/chaosannals/exert-mcu/py32/f002a/f002a/f002a/f002a.Release+PY32F002Ax5.cprj
+
+# Toolchain Configuration File: C:/Users/chens/.vcpkg/artifacts/2139c4c6/tools.open.cmsis.pack.cmsis.toolbox/2.4.0/etc/AC6.6.16.2.cmake
+
+# Package: ARM::CMSIS@5.9.0
+  Location: C:\Users\chens\AppData\Local\arm\packs/ARM/CMSIS/5.9.0/
+
+  * Component: ARM::CMSIS Driver:I2C:Custom@1.0.0
+
+  * Component: ARM::CMSIS Driver:USART:Custom@1.0.0
+
+  * Component: ARM::CMSIS:CORE@5.6.0
+
+  * API: CMSIS Driver:I2C(API)@2.4.0:2.4.0
+
+  * API: CMSIS Driver:USART(API)@2.4.0:2.4.0
+
+# Package: Puya::PY32F0xx_DFP@1.2.1
+  Location: C:\Users\chens\AppData\Local\arm\packs/Puya/PY32F0xx_DFP/1.2.1/
+
+  * Component: Puya::Device:Startup@1.0.0
+    - ConfigFile: g:/chaosannals/exert-mcu/py32/f002a/f002a/f002a/RTE/Device/PY32F002Ax5/startup_py32f002ax5.s:1.0.0
+    - ConfigFile: g:/chaosannals/exert-mcu/py32/f002a/f002a/f002a/RTE/Device/PY32F002Ax5/system_py32f0xx.c:1.0.0

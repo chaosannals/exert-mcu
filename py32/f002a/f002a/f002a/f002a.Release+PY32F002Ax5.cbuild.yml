@@ -1,0 +1,153 @@
+build:
+  generated-by: csolution version 2.4.0
+  solution: ../f002a.csolution.yml
+  project: f002a.cproject.yml
+  context: f002a.Release+PY32F002Ax5
+  compiler: AC6
+  device: Puya::PY32F002Ax5
+  device-pack: Puya::PY32F0xx_DFP@1.2.1
+  processor:
+    endian: little
+    fpu: off
+    core: Cortex-M0+
+  packs:
+    - pack: ARM::CMSIS@5.9.0
+      path: ${CMSIS_PACK_ROOT}/ARM/CMSIS/5.9.0
+    - pack: Puya::PY32F0xx_DFP@1.2.1
+      path: ${CMSIS_PACK_ROOT}/Puya/PY32F0xx_DFP/1.2.1
+  optimize: balanced
+  debug: off
+  misc:
+    ASM:
+      - -masm=auto
+    C:
+      - -std=gnu11
+      - -Wno-macro-redefined
+      - -Wno-pragma-pack
+      - -Wno-parentheses-equality
+      - -Wno-license-management
+    CPP:
+      - -Wno-macro-redefined
+      - -Wno-pragma-pack
+      - -Wno-parentheses-equality
+      - -Wno-license-management
+    Link:
+      - --entry=Reset_Handler
+      - --map
+      - --info summarysizes
+      - --summary_stderr
+      - --diag_suppress=L6314W
+  define:
+    - _RTE_
+  define-asm:
+    - _RTE_
+  add-path:
+    - RTE/_Release_PY32F002Ax5
+    - ${CMSIS_PACK_ROOT}/ARM/CMSIS/5.9.0/CMSIS/Core/Include
+    - ${CMSIS_PACK_ROOT}/ARM/CMSIS/5.9.0/CMSIS/Driver/Include
+    - ${CMSIS_PACK_ROOT}/Puya/PY32F0xx_DFP/1.2.1/Drivers/CMSIS/Device/PY32F0xx/Include
+  output-dirs:
+    intdir: ../tmp/f002a/PY32F002Ax5/Release
+    outdir: ../out/f002a/PY32F002Ax5/Release
+    rtedir: RTE
+  output:
+    - type: elf
+      file: f002a.axf
+  components:
+    - component: ARM::CMSIS Driver:I2C:Custom@1.0.0
+      from-pack: ARM::CMSIS@5.9.0
+      selected-by: ARM::CMSIS Driver:I2C:Custom
+      files:
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS/5.9.0/CMSIS/Driver/Include/Driver_I2C.h
+          category: api
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS/5.9.0/CMSIS/Driver/DriverTemplates/Driver_I2C.c
+          category: sourceC
+          attr: template
+          version: 1.0.0
+          select: I2C Driver
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS/5.9.0/CMSIS/Driver/Include/Driver_I2C.h
+          category: header
+          version: 1.0.0
+    - component: ARM::CMSIS Driver:USART:Custom@1.0.0
+      from-pack: ARM::CMSIS@5.9.0
+      selected-by: ARM::CMSIS Driver:USART:Custom
+      files:
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS/5.9.0/CMSIS/Driver/Include/Driver_USART.h
+          category: api
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS/5.9.0/CMSIS/Driver/DriverTemplates/Driver_USART.c
+          category: sourceC
+          attr: template
+          version: 1.0.0
+          select: USART Driver
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS/5.9.0/CMSIS/Driver/Include/Driver_USART.h
+          category: header
+          version: 1.0.0
+    - component: ARM::CMSIS:CORE@5.6.0
+      condition: ARMv6_7_8-M Device
+      from-pack: ARM::CMSIS@5.9.0
+      selected-by: ARM::CMSIS:CORE
+      files:
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS/5.9.0/CMSIS/Core/Include
+          category: include
+          version: 5.6.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS/5.9.0/CMSIS/Core/Include/tz_context.h
+          category: header
+          version: 5.6.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS/5.9.0/CMSIS/Core/Template/ARMv8-M/main_s.c
+          category: sourceC
+          attr: template
+          version: 1.1.1
+          select: Secure mode 'main' module for ARMv8-M
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS/5.9.0/CMSIS/Core/Template/ARMv8-M/tz_context.c
+          category: sourceC
+          attr: template
+          version: 1.1.1
+          select: RTOS Context Management (TrustZone for ARMv8-M)
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS/5.9.0/CMSIS/Documentation/Core/html/index.html
+          category: doc
+          version: 5.6.0
+    - component: Puya::Device:Startup@1.0.0
+      condition: PY32F0 CMSIS
+      from-pack: Puya::PY32F0xx_DFP@1.2.1
+      selected-by: Device:Startup
+      files:
+        - file: ${CMSIS_PACK_ROOT}/Puya/PY32F0xx_DFP/1.2.1/Drivers/CMSIS/Device/PY32F0xx/Include
+          category: include
+          version: 1.0.0
+        - file: ${CMSIS_PACK_ROOT}/Puya/PY32F0xx_DFP/1.2.1/Drivers/CMSIS/Device/PY32F0xx/Include/py32f0xx.h
+          category: header
+          version: 1.0.0
+        - file: RTE/Device/PY32F002Ax5/startup_py32f002ax5.s
+          category: source
+          attr: config
+          version: 1.0.0
+        - file: RTE/Device/PY32F002Ax5/system_py32f0xx.c
+          category: source
+          attr: config
+          version: 1.0.0
+  linker:
+    script: RTE/Device/PY32F002Ax5/ac6_linker_script.sct.src
+    regions: RTE/Device/PY32F002Ax5/regions_PY32F002Ax5.h
+  groups:
+    - group: Source Files
+      files:
+        - file: main.c
+          category: sourceC
+  constructed-files:
+    - file: RTE/_Release_PY32F002Ax5/RTE_Components.h
+      category: header
+  licenses:
+    - license: <unknown>
+      packs:
+        - pack: ARM::CMSIS@5.9.0
+      components:
+        - component: ::CMSIS Driver:I2C(API)
+        - component: ::CMSIS Driver:USART(API)
+        - component: ARM::CMSIS Driver:I2C:Custom@1.0.0
+        - component: ARM::CMSIS Driver:USART:Custom@1.0.0
+        - component: ARM::CMSIS:CORE@5.6.0
+    - license: <unknown>
+      packs:
+        - pack: Puya::PY32F0xx_DFP@1.2.1
+      components:
+        - component: Puya::Device:Startup@1.0.0

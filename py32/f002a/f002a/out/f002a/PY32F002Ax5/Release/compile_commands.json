@@ -1,0 +1,20 @@
+[
+{
+  "directory": "G:/chaosannals/exert-mcu/py32/f002a/f002a/tmp/f002a/PY32F002Ax5/Release",
+  "command": "c:\\Users\\chens\\.vcpkg\\artifacts\\2139c4c6\\compilers.arm.armclang\\6.22.0\\bin\\armclang.exe -Ig:/chaosannals/exert-mcu/py32/f002a/f002a/f002a/RTE/_Release_PY32F002Ax5 -IC:/Users/chens/AppData/Local/arm/packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include -IC:/Users/chens/AppData/Local/arm/packs/ARM/CMSIS/5.9.0/CMSIS/Driver/Include -IC:/Users/chens/AppData/Local/arm/packs/Puya/PY32F0xx_DFP/1.2.1/Drivers/CMSIS/Device/PY32F0xx/Include -mcpu=cortex-m0plus -mfpu=none  -Wa,armasm,--pd,\"_RTE_ SETA 1\"   -O2   --target=arm-arm-none-eabi -c -masm=auto -o CMakeFiles\\f002a.dir\\G_\\chaosannals\\exert-mcu\\py32\\f002a\\f002a\\f002a\\RTE\\Device\\PY32F002Ax5\\startup_py32f002ax5.o G:\\chaosannals\\exert-mcu\\py32\\f002a\\f002a\\f002a\\RTE\\Device\\PY32F002Ax5\\startup_py32f002ax5.s",
+  "file": "G:\\chaosannals\\exert-mcu\\py32\\f002a\\f002a\\f002a\\RTE\\Device\\PY32F002Ax5\\startup_py32f002ax5.s",
+  "output": "CMakeFiles\\f002a.dir\\G_\\chaosannals\\exert-mcu\\py32\\f002a\\f002a\\f002a\\RTE\\Device\\PY32F002Ax5\\startup_py32f002ax5.o"
+},
+{
+  "directory": "G:/chaosannals/exert-mcu/py32/f002a/f002a/tmp/f002a/PY32F002Ax5/Release",
+  "command": "c:\\Users\\chens\\.vcpkg\\artifacts\\2139c4c6\\compilers.arm.armclang\\6.22.0\\bin\\armclang.exe --target=arm-arm-none-eabi -Ig:/chaosannals/exert-mcu/py32/f002a/f002a/f002a/RTE/_Release_PY32F002Ax5 -IC:/Users/chens/AppData/Local/arm/packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include -IC:/Users/chens/AppData/Local/arm/packs/ARM/CMSIS/5.9.0/CMSIS/Driver/Include -IC:/Users/chens/AppData/Local/arm/packs/Puya/PY32F0xx_DFP/1.2.1/Drivers/CMSIS/Device/PY32F0xx/Include -mcpu=cortex-m0plus -mfpu=none -mlittle-endian -D_RTE_   -O2   --target=arm-arm-none-eabi -c -std=gnu11 -Wno-macro-redefined -Wno-pragma-pack -Wno-parentheses-equality -Wno-license-management -isystem \"c:/Users/chens/.vcpkg/artifacts/2139c4c6/compilers.arm.armclang/6.22.0/include\"  -o CMakeFiles\\f002a.dir\\G_\\chaosannals\\exert-mcu\\py32\\f002a\\f002a\\f002a\\RTE\\Device\\PY32F002Ax5\\system_py32f0xx.o -c G:\\chaosannals\\exert-mcu\\py32\\f002a\\f002a\\f002a\\RTE\\Device\\PY32F002Ax5\\system_py32f0xx.c",
+  "file": "G:\\chaosannals\\exert-mcu\\py32\\f002a\\f002a\\f002a\\RTE\\Device\\PY32F002Ax5\\system_py32f0xx.c",
+  "output": "CMakeFiles\\f002a.dir\\G_\\chaosannals\\exert-mcu\\py32\\f002a\\f002a\\f002a\\RTE\\Device\\PY32F002Ax5\\system_py32f0xx.o"
+},
+{
+  "directory": "G:/chaosannals/exert-mcu/py32/f002a/f002a/tmp/f002a/PY32F002Ax5/Release",
+  "command": "c:\\Users\\chens\\.vcpkg\\artifacts\\2139c4c6\\compilers.arm.armclang\\6.22.0\\bin\\armclang.exe --target=arm-arm-none-eabi -Ig:/chaosannals/exert-mcu/py32/f002a/f002a/f002a/RTE/_Release_PY32F002Ax5 -IC:/Users/chens/AppData/Local/arm/packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include -IC:/Users/chens/AppData/Local/arm/packs/ARM/CMSIS/5.9.0/CMSIS/Driver/Include -IC:/Users/chens/AppData/Local/arm/packs/Puya/PY32F0xx_DFP/1.2.1/Drivers/CMSIS/Device/PY32F0xx/Include -mcpu=cortex-m0plus -mfpu=none -mlittle-endian -D_RTE_   -O2   --target=arm-arm-none-eabi -c -std=gnu11 -Wno-macro-redefined -Wno-pragma-pack -Wno-parentheses-equality -Wno-license-management -isystem \"c:/Users/chens/.vcpkg/artifacts/2139c4c6/compilers.arm.armclang/6.22.0/include\"  -o CMakeFiles\\f002a.dir\\G_\\chaosannals\\exert-mcu\\py32\\f002a\\f002a\\f002a\\main.o -c G:\\chaosannals\\exert-mcu\\py32\\f002a\\f002a\\f002a\\main.c",
+  "file": "G:\\chaosannals\\exert-mcu\\py32\\f002a\\f002a\\f002a\\main.c",
+  "output": "CMakeFiles\\f002a.dir\\G_\\chaosannals\\exert-mcu\\py32\\f002a\\f002a\\f002a\\main.o"
+}
+]

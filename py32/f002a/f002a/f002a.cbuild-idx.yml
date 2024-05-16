@@ -1,0 +1,13 @@
+build-idx:
+  generated-by: csolution version 2.4.0
+  cdefault: ${CMSIS_COMPILER_ROOT}/cdefault.yml
+  csolution: f002a.csolution.yml
+  cprojects:
+    - cproject: f002a/f002a.cproject.yml
+  cbuilds:
+    - cbuild: f002a/f002a.Debug+PY32F002Ax5.cbuild.yml
+      project: f002a
+      configuration: .Debug+PY32F002Ax5
+    - cbuild: f002a/f002a.Release+PY32F002Ax5.cbuild.yml
+      project: f002a
+      configuration: .Release+PY32F002Ax5
