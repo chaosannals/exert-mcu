@@ -1,5 +1,5 @@
 # ninja log v6
-6	34	7375878830865293	CMakeFiles/database	a8570645e7bf7967
+18	66	7376565185320185	CMakeFiles/database	a8570645e7bf7967
+18	66	7376565185320185	G:/chaosannals/exert-mcu/py32/f002a/f002a/tmp/f002a/PY32F002Ax5/Debug/CMakeFiles/database	a8570645e7bf7967
 14	77	7375879155844398	CMakeFiles/f002a.dir/G_/chaosannals/exert-mcu/py32/f002a/f002a/f002a/main.o	ef0dacd8b7569a4
-6	34	7375878830865293	G:/chaosannals/exert-mcu/py32/f002a/f002a/tmp/f002a/PY32F002Ax5/Debug/CMakeFiles/database	a8570645e7bf7967
 8	1055	7375873872148944	CMakeFiles/f002a.dir/G_/chaosannals/exert-mcu/py32/f002a/f002a/f002a/RTE/Device/PY32F002Ax5/startup_py32f002ax5.o	65dc7f3b76350692
