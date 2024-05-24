@@ -35,7 +35,7 @@
 /* Private includes ----------------------------------------------------------*/
 
 /* Private typedef -----------------------------------------------------------*/
-
+ extern UART_HandleTypeDef UartHandle;
 /* Private define ------------------------------------------------------------*/
 
 /* Private macro -------------------------------------------------------------*/
@@ -96,7 +96,10 @@ void SysTick_Handler(void)
 /* For the available peripheral interrupt handler names,                      */
 /* please refer to the startup file (startup_py32f002xx.s).                   */
 /******************************************************************************/
-
+void USART1_IRQHandler(void)
+{
+  HAL_UART_IRQHandler(&UartHandle);
+}
 /**
   * @brief  This function handles PPP interrupt request.
   * @param  None

@@ -37,6 +37,36 @@
   */
 void HAL_MspInit(void)
 {
+  BSP_LED_Init(LED_GREEN);
 }
+
+/**
+  * @brief 初始化全局MSP
+  */
+ void HAL_UART_MspInit(UART_HandleTypeDef *huart)
+ {
+   GPIO_InitTypeDef  GPIO_InitStruct = {0};
+   
+    /*USART1时钟使能*/
+    __HAL_RCC_GPIOA_CLK_ENABLE();
+	 __HAL_RCC_GPIOB_CLK_ENABLE();
+    __HAL_RCC_USART1_CLK_ENABLE();
+    /* GPIO初始化
+    PA7 TX,PB2 RX
+    */
+    GPIO_InitStruct.Pin       = GPIO_PIN_2;
+    GPIO_InitStruct.Mode      = GPIO_MODE_AF_PP;
+    GPIO_InitStruct.Pull      = GPIO_PULLUP;
+    GPIO_InitStruct.Speed     = GPIO_SPEED_FREQ_HIGH;
+    GPIO_InitStruct.Alternate = GPIO_AF1_USART1;
+    HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+    GPIO_InitStruct.Pin = GPIO_PIN_7;
+    GPIO_InitStruct.Mode      = GPIO_MODE_AF_PP;
+    GPIO_InitStruct.Pull      = GPIO_PULLUP;
+    GPIO_InitStruct.Speed     = GPIO_SPEED_FREQ_HIGH;
+    GPIO_InitStruct.Alternate = GPIO_AF1_USART1;
+    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+ }
 
 /************************ (C) COPYRIGHT Puya *****END OF FILE****/
