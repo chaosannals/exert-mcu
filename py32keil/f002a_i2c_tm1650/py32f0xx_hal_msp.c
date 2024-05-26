@@ -37,36 +37,34 @@
   */
 void HAL_MspInit(void)
 {
-  BSP_LED_Init(LED_GREEN);
+  __HAL_RCC_SYSCFG_CLK_ENABLE();
+  __HAL_RCC_PWR_CLK_ENABLE();
 }
 
 /**
-  * @brief 初始化全局MSP
+  * @brief 初始化I2C相关MSP
   */
- void HAL_UART_MspInit(UART_HandleTypeDef *huart)
- {
-   GPIO_InitTypeDef  GPIO_InitStruct = {0};
-   
-    /*USART1时钟使能*/
-    __HAL_RCC_GPIOA_CLK_ENABLE();
-	 __HAL_RCC_GPIOB_CLK_ENABLE();
-    __HAL_RCC_USART1_CLK_ENABLE();
-    /* GPIO初始化
-    PA7 TX,PB2 RX
-    */
-    GPIO_InitStruct.Pin       = GPIO_PIN_2;
-    GPIO_InitStruct.Mode      = GPIO_MODE_AF_PP;
-    GPIO_InitStruct.Pull      = GPIO_PULLUP;
-    GPIO_InitStruct.Speed     = GPIO_SPEED_FREQ_HIGH;
-    GPIO_InitStruct.Alternate = GPIO_AF1_USART1;
-    HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+void HAL_I2C_MspInit(I2C_HandleTypeDef *hi2c)
+{
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
 
-    GPIO_InitStruct.Pin = GPIO_PIN_7;
-    GPIO_InitStruct.Mode      = GPIO_MODE_AF_PP;
-    GPIO_InitStruct.Pull      = GPIO_PULLUP;
-    GPIO_InitStruct.Speed     = GPIO_SPEED_FREQ_HIGH;
-    GPIO_InitStruct.Alternate = GPIO_AF1_USART1;
-    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
- }
+  __HAL_RCC_SYSCFG_CLK_ENABLE();                              /*SYSCFG时钟使能*/
+  __HAL_RCC_I2C_CLK_ENABLE();                                 /*I2C时钟使能*/
+  __HAL_RCC_GPIOA_CLK_ENABLE();                               /*GPIOA时钟使能*/
+
+  /**I2C GPIO Configuration
+  PA3     ------> I2C1_SCL
+  PA2     ------> I2C1_SDA
+  */
+  GPIO_InitStruct.Pin = GPIO_PIN_2 | GPIO_PIN_3;
+  GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;                     /*开漏*/
+  GPIO_InitStruct.Pull = GPIO_PULLUP;                         /*上拉*/
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+  GPIO_InitStruct.Alternate = GPIO_AF12_I2C;                   /*复用为I2C*/
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);                     /*GPIO初始化*/
+  /*复位I2C*/
+  __HAL_RCC_I2C_FORCE_RESET();
+  __HAL_RCC_I2C_RELEASE_RESET();
+}
 
 /************************ (C) COPYRIGHT Puya *****END OF FILE****/

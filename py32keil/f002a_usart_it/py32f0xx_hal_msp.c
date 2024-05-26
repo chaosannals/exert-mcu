@@ -45,12 +45,12 @@ void HAL_MspInit(void)
   */
  void HAL_UART_MspInit(UART_HandleTypeDef *huart)
  {
-   GPIO_InitTypeDef  GPIO_InitStruct = {0};
+		GPIO_InitTypeDef  GPIO_InitStruct = {0};
    
     /*USART1时钟使能*/
     __HAL_RCC_GPIOA_CLK_ENABLE();
-	 __HAL_RCC_GPIOB_CLK_ENABLE();
-	 __HAL_RCC_USART1_CLK_ENABLE();
+	  __HAL_RCC_GPIOB_CLK_ENABLE();
+	  __HAL_RCC_USART1_CLK_ENABLE();
     /* GPIO初始化
     PA7 TX,PB2 RX
     */

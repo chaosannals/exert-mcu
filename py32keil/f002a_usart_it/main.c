@@ -34,14 +34,15 @@
 
 /* Private define ------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-UART_HandleTypeDef UartHandle;
-uint8_t aTxBuffer[12] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
-uint8_t aRxBuffer[12] = {0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff};
+extern UART_HandleTypeDef UartHandle;
+static uint8_t aTxBuffer[12] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+static uint8_t aRxBuffer[12] = {0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff};
 /* Private function prototypes -----------------------------------------------*/
 /* Private user code ---------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private function prototypes -----------------------------------------------*/
 void Error_Handler(void);
+void APP_LED_Init(void);
 void APP_USARTConfig(void);
 
 /**
@@ -50,10 +51,8 @@ void APP_USARTConfig(void);
   */
 int main(void)
 {
-  /* 初始化所有外设，Flash接口，SysTick */
   HAL_Init();
-  
-  /* 系统时钟配置 */
+  APP_LED_Init();
   APP_USARTConfig(); 
 
   /*通过中断方式接收数据*/
@@ -63,8 +62,23 @@ int main(void)
   }
   while (1)
   {
-
+			HAL_Delay(40);
+			HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
   }
+}
+
+void APP_LED_Init(void)
+{
+  GPIO_InitTypeDef  GPIO_InitStruct = {0};
+
+  __HAL_RCC_GPIOB_CLK_ENABLE();                        
+
+  GPIO_InitStruct.Pin = GPIO_PIN_0;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 }
 
 /**
@@ -74,10 +88,33 @@ int main(void)
   */
 void APP_USARTConfig(void)
 {
+	GPIO_InitTypeDef  GPIO_InitStruct = {0};
+	
   /* USART1初始化 */
-  __HAL_RCC_USART1_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
 	__HAL_RCC_GPIOB_CLK_ENABLE();
+	__HAL_RCC_USART1_CLK_ENABLE();
+	
+	/* GPIO初始化
+    PA7 TX,PB2 RX
+  */
+	GPIO_InitStruct.Pin       = GPIO_PIN_7;
+	GPIO_InitStruct.Mode      = GPIO_MODE_AF_PP;
+	GPIO_InitStruct.Pull      = GPIO_PULLUP;
+	GPIO_InitStruct.Speed     = GPIO_SPEED_FREQ_HIGH;
+	GPIO_InitStruct.Alternate = GPIO_AF8_USART1;
+	HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+	GPIO_InitStruct.Pin = GPIO_PIN_2;
+	GPIO_InitStruct.Mode      = GPIO_MODE_AF_PP;
+	GPIO_InitStruct.Pull      = GPIO_PULLUP;
+	GPIO_InitStruct.Speed     = GPIO_SPEED_FREQ_HIGH;
+	GPIO_InitStruct.Alternate = GPIO_AF0_USART1;
+	HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+	/*USART1中断使能*/
+	HAL_NVIC_SetPriority(USART1_IRQn, 0, 1);
+	HAL_NVIC_EnableIRQ(USART1_IRQn);
+	
   UartHandle.Instance          = USART1;
   UartHandle.Init.BaudRate     = 115200;
   UartHandle.Init.WordLength   = UART_WORDLENGTH_8B;
@@ -112,10 +149,10 @@ void APP_USARTConfig(void)
   * @param  无
   * @retval 无
   */
-void HAL_UART_TxCpltCallback(UART_HandleTypeDef *UartHandle)
+void HAL_UART_TxCpltCallback(UART_HandleTypeDef *uartHandle)
 {
   /*通过中断方式接收数据*/
-  if (HAL_UART_Receive_IT(UartHandle, (uint8_t *)aRxBuffer, 12) != HAL_OK)
+  if (HAL_UART_Receive_IT(uartHandle, (uint8_t *)aRxBuffer, 12) != HAL_OK)
   {
     Error_Handler();
   }
@@ -125,10 +162,10 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *UartHandle)
   * @param  无
   * @retval 无
   */
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *uartHandle)
 {
   /*通过中断方式接收数据*/
-  if (HAL_UART_Transmit_IT(UartHandle, (uint8_t *)aRxBuffer, 12) != HAL_OK)
+  if (HAL_UART_Transmit_IT(uartHandle, (uint8_t *)aRxBuffer, 12) != HAL_OK)
   {
     Error_Handler();
   }
