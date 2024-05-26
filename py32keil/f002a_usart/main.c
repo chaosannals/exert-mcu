@@ -18,29 +18,22 @@ int main(void)
   APP_LED_Init();
   APP_USARTConfig(); 
 
-	/*通过中断方式接收数据*/
-  if (HAL_UART_Transmit(&UartHandle, (uint8_t *)aTxBuffer, 12,5000) != HAL_OK)
-  {
-    Error_Handler();
-  }
   while (1)
   {
-		status = HAL_UART_Receive(&UartHandle, (uint8_t *)aRxBuffer, 12, 5000);
-    if (status != HAL_OK)
+		// 都不满 12 byte 会超时。这个比中断差就差在数据要是固定长度。
+		status = HAL_UART_Receive(&UartHandle, (uint8_t *)aRxBuffer, 12, 400);
+    if (status == HAL_OK)
     {
-      //Error_Handler();
-			HAL_Delay(1000);
+			HAL_Delay(40);
 			HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
-    }
-		else {
-			HAL_Delay(400);
-			HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
+
+			// echo 回去
+			status = HAL_UART_Transmit(&UartHandle, (uint8_t *)aRxBuffer, 12, 4000);
+			if (status != HAL_OK)
+			{
+				Error_Handler();
+			}
 		}
-		status = HAL_UART_Transmit(&UartHandle, (uint8_t *)aTxBuffer, 12, 5000);
-    if (status != HAL_OK)
-    {
-      Error_Handler();
-    }
   }
 }
 
@@ -79,14 +72,14 @@ void APP_USARTConfig(void)
     GPIO_InitStruct.Mode      = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull      = GPIO_PULLUP;
     GPIO_InitStruct.Speed     = GPIO_SPEED_FREQ_HIGH;
-    GPIO_InitStruct.Alternate = GPIO_AF1_USART1;
+    GPIO_InitStruct.Alternate = GPIO_AF0_USART1;
     HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
     GPIO_InitStruct.Pin	 			= GPIO_PIN_7;
     GPIO_InitStruct.Mode      = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull      = GPIO_PULLUP;
     GPIO_InitStruct.Speed     = GPIO_SPEED_FREQ_HIGH;
-    GPIO_InitStruct.Alternate = GPIO_AF1_USART1;
+    GPIO_InitStruct.Alternate = GPIO_AF8_USART1;
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 	
   UartHandle.Instance          = USART1;
