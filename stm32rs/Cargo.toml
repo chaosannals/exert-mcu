@@ -1,0 +1,17 @@
+[workspace]
+resolver = "2"
+members=[
+    "f401rct6"
+, "f401rct6_rtic_usb_cdc_echo"]
+
+[workspace.dependencies]
+embedded-hal = "0.2"
+nb = "1"
+cortex-m = "0.7"
+cortex-m-rt = "0.7"
+cortex-m-rtic = "1.1.4"
+# Panic behaviour, see https://crates.io/keywords/panic-impl for alternatives
+panic-halt = "0.2"
+stm32f4xx-hal = "0.20.0"
+usb-device = "0.3.2"
+usbd-serial = "0.2.2"

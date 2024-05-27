@@ -1,0 +1,23 @@
+[package]
+name = "f401rct6"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+embedded-hal.workspace=true
+nb.workspace=true
+cortex-m.workspace=true
+cortex-m-rt.workspace=true
+# Panic behaviour, see https://crates.io/keywords/panic-impl for alternatives
+panic-halt.workspace=true
+stm32f4xx-hal={ workspace=true, features = ["stm32f401", "defmt", "usb_fs"] }
+usb-device.workspace=true
+usbd-serial.workspace=true
+
+[profile.dev]
+panic="abort"
+
+[profile.release]
+panic ="abort"
