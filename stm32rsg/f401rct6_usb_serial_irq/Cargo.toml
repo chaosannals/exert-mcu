@@ -1,0 +1,28 @@
+[package]
+name = "f401rct6_usb_serial_irq"
+version = "0.1.0"
+authors = ["chenshenchao <chenshenchao@outlook.com>"]
+edition = "2021"
+
+[dependencies]
+cortex-m = "0.7"
+cortex-m-rt = "0.7"
+panic-probe = { version = "0.3.1", features = ["defmt"] }
+usb-device = "0.3.2"
+usbd-serial = "0.2.2"
+panic-halt = "0.2"
+
+[dependencies.stm32f4xx-hal]
+version = "0.20.0"
+features = ["stm32f401", "defmt", "usb_fs"]
+
+# Set the default for dependencies.
+[profile.dev.package."*"]
+opt-level = "s"
+
+[profile.release]
+codegen-units = 1
+incremental = false
+debug = true
+lto = true
+opt-level = "s"
