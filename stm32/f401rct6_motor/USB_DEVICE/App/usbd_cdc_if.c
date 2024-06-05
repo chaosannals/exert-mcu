@@ -24,6 +24,7 @@
 /* USER CODE BEGIN INCLUDE */
 #include <ctype.h>
 #include <stdlib.h>
+#include "motor.h"
 /* USER CODE END INCLUDE */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -353,10 +354,6 @@ static void CDC_CMD_Read(uint8_t* Buf, uint32_t Len) {
 	CmdBufPos = 0;
 }
 
-void PWM_SetPulse(TIM_HandleTypeDef *htim, uint32_t channel, uint16_t value);
-extern TIM_HandleTypeDef htim4;
-extern TIM_HandleTypeDef htim10;
-extern TIM_HandleTypeDef htim11;
 // SETX 123;
 // SETY 456;
 //
@@ -368,29 +365,11 @@ static void CDC_CMD_DO(void) {
 	if (CDC_CMD_Match("SETX")) {
 		CDC_CMD_SkipSpace();
 		v = atoi(CmdBuf + CmdBufPos);
-		if (v == 0) {
-			HAL_TIM_PWM_Stop(&htim11, TIM_CHANNEL_1);
-			HAL_TIM_PWM_Stop(&htim10, TIM_CHANNEL_1);
-		} else if(v > 0) {
-			HAL_TIM_PWM_Stop(&htim11, TIM_CHANNEL_1);
-			PWM_SetPulse(&htim10, TIM_CHANNEL_1, 2000 - v);
-		} else {
-			HAL_TIM_PWM_Stop(&htim10, TIM_CHANNEL_1);
-			PWM_SetPulse(&htim11, TIM_CHANNEL_1, 2000 + v);
-		}
+		Motor_SetX(v);
 	} else if (CDC_CMD_Match("SETY")) {
 		CDC_CMD_SkipSpace();
 		v = atoi(CmdBuf + CmdBufPos);
-		if (v == 0) {
-			HAL_TIM_PWM_Stop(&htim4, TIM_CHANNEL_1);
-			HAL_TIM_PWM_Stop(&htim4, TIM_CHANNEL_2);
-		} else if (v > 0) {
-			HAL_TIM_PWM_Stop(&htim4, TIM_CHANNEL_1);
-			PWM_SetPulse(&htim4, TIM_CHANNEL_2, 2000 - v);
-		} else {
-			HAL_TIM_PWM_Stop(&htim4, TIM_CHANNEL_2);
-			PWM_SetPulse(&htim4, TIM_CHANNEL_1, 2000 + v);
-		}
+		Motor_SetY(v);
 	} else {
 		CDC_Transmit_FS("Invalid Cmd\n", 12);
 	}
