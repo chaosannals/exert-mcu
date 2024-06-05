@@ -22,7 +22,8 @@
 #include "usbd_cdc_if.h"
 
 /* USER CODE BEGIN INCLUDE */
-
+#include <ctype.h>
+#include <stdlib.h>
 /* USER CODE END INCLUDE */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -74,7 +75,7 @@
   */
 
 /* USER CODE BEGIN PRIVATE_MACRO */
-
+#define CMD_BUF_SIZE 0xFF
 /* USER CODE END PRIVATE_MACRO */
 
 /**
@@ -94,7 +95,8 @@ uint8_t UserRxBufferFS[APP_RX_DATA_SIZE];
 uint8_t UserTxBufferFS[APP_TX_DATA_SIZE];
 
 /* USER CODE BEGIN PRIVATE_VARIABLES */
-
+uint8_t CmdBuf[CMD_BUF_SIZE] = { 0 };
+uint8_t CmdBufPos = 0;
 /* USER CODE END PRIVATE_VARIABLES */
 
 /**
@@ -128,7 +130,8 @@ static int8_t CDC_Receive_FS(uint8_t* pbuf, uint32_t *Len);
 static int8_t CDC_TransmitCplt_FS(uint8_t *pbuf, uint32_t *Len, uint8_t epnum);
 
 /* USER CODE BEGIN PRIVATE_FUNCTIONS_DECLARATION */
-
+static void CDC_CMD_Read(uint8_t* Buf, uint32_t Len);
+static void CDC_CMD_DO(void);
 /* USER CODE END PRIVATE_FUNCTIONS_DECLARATION */
 
 /**
@@ -261,7 +264,8 @@ static int8_t CDC_Control_FS(uint8_t cmd, uint8_t* pbuf, uint16_t length)
 static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t *Len)
 {
   /* USER CODE BEGIN 6 */
-	CDC_Transmit_FS(Buf, *Len); // echo 回去
+	CDC_CMD_Read(Buf, *Len);
+	CDC_CMD_DO();
 
   USBD_CDC_SetRxBuffer(&hUsbDeviceFS, Buf);
   USBD_CDC_ReceivePacket(&hUsbDeviceFS);
@@ -318,6 +322,81 @@ static int8_t CDC_TransmitCplt_FS(uint8_t *Buf, uint32_t *Len, uint8_t epnum)
 }
 
 /* USER CODE BEGIN PRIVATE_FUNCTIONS_IMPLEMENTATION */
+static uint8_t CDC_CMD_Match(const char *buf) {
+	uint8_t i;
+	for(i = 0;(CmdBufPos + i) < CMD_BUF_SIZE; ++i) {
+		if (buf[i] == '\0') {
+			CmdBufPos += i;
+			return 1;
+		}
+		if (buf[i] != toupper(CmdBuf[CmdBufPos + i])) {
+			return 0;
+		}
+	}
+	return 0;
+}
+
+static void CDC_CMD_SkipSpace(void) {
+	while (isspace(CmdBuf[CmdBufPos])) {
+		++CmdBufPos;
+	}
+}
+
+static void CDC_CMD_Read(uint8_t* Buf, uint32_t Len) {
+	uint8_t i = 0;
+	for (i = 0; i < Len && CmdBufPos < CMD_BUF_SIZE; ++i, ++CmdBufPos) {
+		CmdBuf[CmdBufPos] = Buf[i];
+		if (Buf[i] == ';') {
+			break;
+		}
+	}
+	CmdBufPos = 0;
+}
+
+void PWM_SetPulse(TIM_HandleTypeDef *htim, uint32_t channel, uint16_t value);
+extern TIM_HandleTypeDef htim4;
+extern TIM_HandleTypeDef htim10;
+extern TIM_HandleTypeDef htim11;
+// SETX 123;
+// SETY 456;
+//
+static void CDC_CMD_DO(void) {
+	int v;
+	// 跳过空格
+	CDC_CMD_SkipSpace();
+	// 匹配指令
+	if (CDC_CMD_Match("SETX")) {
+		CDC_CMD_SkipSpace();
+		v = atoi(CmdBuf + CmdBufPos);
+		if (v == 0) {
+			HAL_TIM_PWM_Stop(&htim11, TIM_CHANNEL_1);
+			HAL_TIM_PWM_Stop(&htim10, TIM_CHANNEL_1);
+		} else if(v > 0) {
+			HAL_TIM_PWM_Stop(&htim11, TIM_CHANNEL_1);
+			PWM_SetPulse(&htim10, TIM_CHANNEL_1, 2000 - v);
+		} else {
+			HAL_TIM_PWM_Stop(&htim10, TIM_CHANNEL_1);
+			PWM_SetPulse(&htim11, TIM_CHANNEL_1, 2000 + v);
+		}
+	} else if (CDC_CMD_Match("SETY")) {
+		CDC_CMD_SkipSpace();
+		v = atoi(CmdBuf + CmdBufPos);
+		if (v == 0) {
+			HAL_TIM_PWM_Stop(&htim4, TIM_CHANNEL_1);
+			HAL_TIM_PWM_Stop(&htim4, TIM_CHANNEL_2);
+		} else if (v > 0) {
+			HAL_TIM_PWM_Stop(&htim4, TIM_CHANNEL_1);
+			PWM_SetPulse(&htim4, TIM_CHANNEL_2, 2000 - v);
+		} else {
+			HAL_TIM_PWM_Stop(&htim4, TIM_CHANNEL_2);
+			PWM_SetPulse(&htim4, TIM_CHANNEL_1, 2000 + v);
+		}
+	} else {
+		CDC_Transmit_FS("Invalid Cmd\n", 12);
+	}
+
+	CmdBufPos=0;
+}
 
 /* USER CODE END PRIVATE_FUNCTIONS_IMPLEMENTATION */
 
