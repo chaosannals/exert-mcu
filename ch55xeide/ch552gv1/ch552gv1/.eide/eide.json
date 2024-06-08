@@ -1,0 +1,58 @@
+{
+  "name": "ch552gv1",
+  "type": "C51",
+  "dependenceList": [],
+  "srcDirs": [],
+  "virtualFolder": {
+    "name": "<virtual_root>",
+    "files": [],
+    "folders": [
+      {
+        "name": "Application",
+        "files": [
+          {
+            "path": "examples/blink/main.c"
+          },
+          {
+            "path": "peripheral_lib/source/debug.c"
+          }
+        ],
+        "folders": []
+      }
+    ]
+  },
+  "outDir": "build",
+  "deviceName": null,
+  "packDir": null,
+  "miscInfo": {
+    "uid": "5db33bf3339e1434a02939c4c486d233"
+  },
+  "targets": {
+    "Debug": {
+      "excludeList": [],
+      "toolchain": "SDCC",
+      "compileConfig": {
+        "options": "null"
+      },
+      "uploader": "Custom",
+      "uploadConfig": {
+        "bin": ".\\build\\Debug\\ch554_demo.hex",
+        "commandLine": "wchisptool -g -f ${hexFile}",
+        "eraseChipCommand": ""
+      },
+      "uploadConfigMap": {},
+      "custom_dep": {
+        "name": "default",
+        "incList": [
+          "peripheral_lib/include"
+        ],
+        "libList": [],
+        "sourceDirList": [],
+        "defineList": [
+          "FREQ_SYS=24000000"
+        ]
+      }
+    }
+  },
+  "version": "3.3"
+}
